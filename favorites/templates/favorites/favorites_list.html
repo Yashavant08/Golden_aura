@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Favorites - GoldenAura</title>
+</head>
+
+<body>
+
+    <h1>❤️ My Favorite Products</h1>
+
+    {% for favorite in favorites %}
+
+        <div>
+            <h2>{{ favorite.product.name }}</h2>
+
+            <p>Price: ₹{{ favorite.product.price }}</p>
+
+            <a href="{% url 'product_detail' favorite.product.id %}">
+                View Product
+            </a>
+        </div>
+
+        <hr>
+
+    {% empty %}
+
+        <h2>No favorite products yet ❤️</h2>
+
+    {% endfor %}
+
+</body>
+</html>

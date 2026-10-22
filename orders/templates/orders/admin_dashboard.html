@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GoldenAura 960 | Executive Administration</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Premium Luxury Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #fcfbf9;
+            --bg-card: #ffffff;
+            --border-gold: #e2d3b5;
+            --gold-primary: #b89742;
+            --gold-dark: #8c6d28;
+            --text-main: #1a202c;
+            --text-muted: #718096;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, .brand-title, .metric-value {
+            font-family: 'Cinzel', serif !important;
+            letter-spacing: 0.8px;
+        }
+
+        .dashboard-header {
+            background: #ffffff;
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 24px 32px;
+            box-shadow: 0 10px 30px rgba(184, 151, 66, 0.06);
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+            height: 100%;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 25px rgba(184, 151, 66, 0.12);
+        }
+
+        .metric-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #d4be83, var(--gold-primary));
+        }
+
+        .col-xl-custom {
+            flex: 1 0 18%;
+            min-width: 210px;
+        }
+
+        .luxury-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
+        }
+
+        /* CUSTOM NAVIGATION TABS */
+        .nav-luxury {
+            border-bottom: none;
+            gap: 12px;
+        }
+
+        .nav-luxury .nav-link {
+            background: #ffffff;
+            border: 1px solid var(--border-gold);
+            color: var(--text-muted);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            padding: 12px 24px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-luxury .nav-link:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-dark);
+            background: rgba(184, 151, 66, 0.05);
+        }
+
+        .nav-luxury .nav-link.active {
+            background: linear-gradient(135deg, #c5a059 0%, #997531 100%) !important;
+            color: #ffffff !important;
+            border-color: transparent !important;
+            box-shadow: 0 4px 15px rgba(184, 151, 66, 0.3);
+        }
+
+        .btn-gold-luxury {
+            background: linear-gradient(135deg, #c5a059 0%, #997531 100%);
+            color: #ffffff;
+            font-weight: 600;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.5px;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(184, 151, 66, 0.25);
+        }
+
+        .btn-gold-luxury:hover {
+            background: linear-gradient(135deg, #d8b465 50%, #8c6d28 100%);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 1px solid #cbd5e1;
+            color: var(--text-main);
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 10px 18px;
+        }
+
+        .btn-outline-danger-custom {
+            background: transparent;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            color: #dc2626;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 10px 18px;
+        }
+
+        .table {
+            color: var(--text-main) !important;
+            margin-bottom: 0;
+        }
+
+        .table th {
+            background-color: #f7f3ec !important;
+            color: var(--gold-dark) !important;
+            font-weight: 700;
+            font-size: 0.82rem;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--border-gold);
+            padding: 14px 16px;
+        }
+
+        .table td {
+            background-color: transparent !important;
+            color: #2d3748 !important;
+            border-bottom: 1px solid #edf2f7;
+            padding: 16px;
+            vertical-align: middle;
+            font-size: 0.95rem;
+        }
+
+        .btn-action-edit {
+            color: #b8860b;
+            border: 1px solid rgba(184, 134, 11, 0.3);
+            background: rgba(184, 134, 11, 0.04);
+            padding: 5px 12px;
+            font-size: 0.78rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .btn-action-delete {
+            color: #dc2626;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            background: rgba(220, 38, 38, 0.04);
+            padding: 5px 12px;
+            font-size: 0.78rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .btn-action-manage {
+            color: #0284c7;
+            border: 1px solid rgba(2, 132, 199, 0.3);
+            background: rgba(2, 132, 199, 0.04);
+            padding: 5px 14px;
+            font-size: 0.78rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .text-gold {
+            color: var(--gold-dark) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4 px-4 px-lg-5">
+        
+        <!-- TOP HEADER -->
+        <div class="dashboard-header d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+            <div>
+                <h2 class="brand-title text-gold fw-bold mb-1"><i class="fas fa-ring me-2"></i> GoldenAura 960</h2>
+                <p class="text-muted small mb-0">High-End Jewellery Management & Store Control Center</p>
+            </div>
+            <div class="d-flex align-items-center flex-wrap gap-2">
+                <a href="/admin/store/product/add/" class="btn btn-gold-luxury shadow-sm">
+                    <i class="fas fa-plus-circle me-2"></i>Add New Jewellery
+                </a>
+                <a href="/admin/" class="btn btn-outline-custom">
+                    <i class="fas fa-sliders-h me-2"></i>Django Admin
+                </a>
+                <a href="/admin/logout/" class="btn btn-outline-danger-custom">
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                </a>
+            </div>
+        </div>
+        
+        <!-- METRICS ROW -->
+        <div class="row g-4 mb-4">
+            <div class="col-xl-custom col-lg-4 col-md-6 col-12">
+                <div class="metric-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted text-uppercase small mb-1 fw-bold">Total Revenue</p>
+                            <h3 class="metric-value text-gold fw-bold mb-0">₹ {{ total_revenue | floatformat:2 }}</h3>
+                        </div>
+                        <div class="fs-2 text-warning opacity-50"><i class="fas fa-wallet"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-custom col-lg-4 col-md-6 col-12">
+                <div class="metric-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted text-uppercase small mb-1 fw-bold">Today's Sales</p>
+                            <h3 class="metric-value text-success fw-bold mb-0">₹ {{ today_revenue| floatformat:2 }}</h3>
+                        </div>
+                        <div class="fs-2 text-success opacity-50"><i class="fas fa-chart-line"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-custom col-lg-4 col-md-6 col-12">
+                <div class="metric-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted text-uppercase small mb-1 fw-bold">Total Orders</p>
+                            <h3 class="metric-value text-info fw-bold mb-0">{{ total_orders }}</h3>
+                        </div>
+                        <div class="fs-2 text-info opacity-50"><i class="fas fa-shopping-bag"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-custom col-lg-4 col-md-6 col-12">
+                <div class="metric-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted text-uppercase small mb-1 fw-bold">Jewellery Catalog</p>
+                            <h3 class="metric-value text-warning fw-bold mb-0">{{ total_products }}</h3>
+                        </div>
+                        <div class="fs-2 text-warning opacity-50"><i class="fas fa-gem"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-custom col-lg-4 col-md-6 col-12">
+                <div class="metric-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted text-uppercase small mb-1 fw-bold">Total Customers</p>
+                            <h3 class="metric-value text-primary fw-bold mb-0">{{ total_users }}</h3>
+                        </div>
+                        <div class="fs-2 text-primary opacity-50"><i class="fas fa-users"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-custom col-lg-4 col-md-6 col-12">
+                <div class="metric-card">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted text-uppercase small mb-1 fw-bold">Return Requests</p>
+                            <h3 class="metric-value text-danger fw-bold mb-0">{{ total_returns }}</h3>
+                        </div>
+                        <div class="fs-2 text-danger opacity-50"><i class="fas fa-undo"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INTERACTIVE SECTION TABS -->
+        <ul class="nav nav-pills nav-luxury mb-3" id="adminTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="stock-tab" data-bs-toggle="pill" data-bs-target="#stock-section" type="button" role="tab">
+                    <i class="fas fa-boxes-stacked me-2"></i> Jewellery Collection Stock
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="orders-tab" data-bs-toggle="pill" data-bs-target="#orders-section" type="button" role="tab">
+                    <i class="fas fa-receipt me-2"></i> Recent Customer Orders
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="returns-tab" data-bs-toggle="pill" data-bs-target="#returns-section" type="button" role="tab">
+                    <i class="fas fa-undo-alt me-2"></i> Detailed Return Requests
+                </button>
+            </li>
+        </ul>
+
+        <!-- TAB CONTENT CONTAINER -->
+        <div class="tab-content" id="adminTabsContent">
+            
+            <!-- SECTION 1: JEWELLERY STOCK -->
+            <div class="tab-pane fade show active" id="stock-section" role="tabpanel">
+                <div class="luxury-container">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="text-gold fw-bold mb-0"><i class="fas fa-gem me-2"></i> Jewellery Collection Stock</h4>
+                        <span class="badge bg-light border border-secondary text-dark px-3 py-2">Catalog Active</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Item Name</th>
+                                    <th>Price</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for p in products %}
+                                <tr>
+                                    <td class="text-muted">#{{ p.id }}</td>
+                                    <td class="fw-semibold text-dark">{{ p.name }}</td>
+                                    <td class="text-gold fw-bold">₹ {{ p.price }}</td>
+                                    <td class="text-end">
+                                        <div class="d-inline-flex align-items-center justify-content-end gap-1">
+                                            <a href="/admin/store/product/{{ p.id }}/change/" class="btn-action-edit">Edit</a>
+                                            <a href="/admin/store/product/{{ p.id }}/delete/" class="btn-action-delete">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted py-4">No jewellery products found in stock.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: RECENT CUSTOMER ORDERS -->
+            <div class="tab-pane fade" id="orders-section" role="tabpanel">
+                <div class="luxury-container">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="text-gold fw-bold mb-0"><i class="fas fa-shopping-bag me-2"></i> Recent Customer Orders</h4>
+                        <span class="badge bg-light border border-secondary text-dark px-3 py-2">Live Stream</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Amount</th>
+                                    <th>Date / Time</th>
+                                    <th>Status</th>
+                                    <th>Invoice</th>
+                                    <th class="text-end">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for o in recent_orders %}
+                                <tr>
+                                    <td class="text-muted">#{{ o.id }}</td>
+                                    <td class="text-dark fw-semibold">{{ o.full_name }}</td>
+                                    <td class="text-gold fw-bold">₹ {{ o.total }}</td>
+                                    <td class="text-muted small">{{ o.created_at|date:"d M Y, h:i A" }}</td>
+                                    <td>
+                                        <form action="{% url 'update_order_status' o.id %}" method="POST" class="d-flex align-items-center gap-1">
+                                            {% csrf_token %}
+                                            <select name="status" class="form-select form-select-sm" style="width: 105px; font-size: 0.75rem;">
+                                                <option value="pending" {% if o.status == 'pending' %}selected{% endif %}>Pending</option>
+                                                <option value="shipped" {% if o.status == 'shipped' %}selected{% endif %}>Shipped</option>
+                                                <option value="delivered" {% if o.status == 'delivered' %}selected{% endif %}>Delivered</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-sm btn-outline-custom p-1 px-2" style="font-size: 0.7rem;"><i class="fas fa-check"></i></button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'order_invoice' o.id %}" class="btn btn-sm btn-outline-warning text-dark bg-light fw-bold" target="_blank">
+                                            <i class="fas fa-file-invoice me-1 text-gold"></i> View Invoice
+                                        </a>
+                                    </td>
+                                    <td class="invoice-action text-end">
+                                        <a href="/admin/orders/order/{{ o.id }}/change/" class="btn-action-manage">Manage</a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted py-4">No recent customer orders found.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: DETAILED RETURN REQUESTS -->
+            <div class="tab-pane fade" id="returns-section" role="tabpanel">
+                <div class="luxury-container">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="text-danger fw-bold mb-0"><i class="fas fa-undo-alt me-2"></i> Detailed Return Requests & Products</h4>
+                        <span class="badge bg-danger text-white px-3 py-2">Action Required</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Request ID</th>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Product Details</th>
+                                    <th>Reason / Note</th>
+                                    <th>Requested Date</th>
+                                    <th class="text-end">Admin Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ret in return_requests %}
+                                <tr>
+                                    <td class="text-muted">#{{ ret.id }}</td>
+                                    <td class="fw-semibold">#{{ ret.order.id }}</td>
+                                    <td>{{ ret.customer_name|default:ret.order.full_name }}</td>
+                                    <td><span class="fw-bold text-dark">{{ ret.product_name|default:"Jewellery Item" }}</span></td>
+                                    <td class="text-muted small">{{ ret.reason|default:"No reason provided" }}</td>
+                                    <td class="text-muted small">{{ ret.created_at|date:"d M Y, h:i A" }}</td>
+                                    <td class="text-end">
+                                        <div class="d-inline-flex align-items-center justify-content-end gap-1">
+                                            <a href="/admin/orders/returnrequest/" class="btn-action-manage">Review</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted py-4">No return requests found at the moment.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

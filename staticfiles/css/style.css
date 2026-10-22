@@ -1,0 +1,96 @@
+:root {
+    --bg-dark: #121212;
+    --card-bg: #1e1e1e;
+    --purple-primary: #a855f7;
+    --purple-dark: #7e22ce;
+    --gold-accent: #d4af37;
+    --text-light: #f3f4f6;
+    --text-muted: #9ca3af;
+    --border-color: #333333;
+}
+
+body {
+    background-color: var(--bg-dark) !important;
+    color: var(--text-light) !important;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding-bottom: 60px;
+}
+
+/* Navbar */
+.navbar-custom {
+    background-color: #000000 !important;
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    text-align: center;
+}
+
+.navbar-custom a {
+    color: var(--gold-accent) !important;
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+}
+
+/* Cards & Containers */
+.card, .review-card, #reviewForm, .product-img-box {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-light) !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(168, 85, 247, 0.2);
+    border-color: var(--gold-accent) !important;
+}
+
+/* Headings & Text */
+h1, h2, h3, h4, h5, h6, .royal-heading, .card-title, .customer-reviews-title {
+    color: var(--gold-accent) !important;
+    font-weight: bold;
+}
+
+p, span, label, small, .card-text, .text-muted {
+    color: var(--text-muted) !important;
+}
+
+.price-tag {
+    color: var(--gold-accent) !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Buttons */
+.btn-dark, .btn-purple-primary, #reviewForm button[type="submit"] {
+    background-color: var(--purple-primary) !important;
+    border-color: var(--purple-primary) !important;
+    color: #ffffff !important;
+}
+
+.btn-dark:hover, .btn-purple-primary:hover {
+    background-color: var(--purple-dark) !important;
+}
+
+#reviewButton {
+    background-color: var(--gold-accent) !important;
+    color: #000000 !important;
+    font-weight: 600;
+    border: none;
+}
+
+/* Form Inputs & Tables */
+input[type="text"], input[type="number"], textarea, select {
+    background-color: #2b2b2b !important;
+    color: #ffffff !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.table {
+    color: var(--text-light) !important;
+}

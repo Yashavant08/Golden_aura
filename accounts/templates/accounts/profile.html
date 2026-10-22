@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Profile - GoldenAura 960</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts for Luxury Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons for professional touch -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f7f8fa;
+            font-family: 'Inter', sans-serif;
+            color: #2b2b2b;
+        }
+        .luxury-card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
+            background: #ffffff;
+            border-top: 5px solid #d4af37; /* Rich Gold Accent */
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        /* Django Form Fields Styling */
+        form p label {
+            font-weight: 500;
+            color: #4a4a4a;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+        form p input, 
+        form p select, 
+        form p textarea {
+            width: 100%;
+            padding: 11px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background-color: #fafbfc;
+        }
+        form p input:focus, 
+        form p select:focus, 
+        form p textarea:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.12);
+            outline: none;
+            background-color: #fff;
+        }
+        .btn-gold {
+            background-color: #1a1a1a;
+            color: #d4af37;
+            border: 1px solid #1a1a1a;
+            font-weight: 500;
+            padding: 12px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        .btn-gold:hover {
+            background-color: #d4af37;
+            color: #ffffff;
+            border-color: #d4af37;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #555555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 8px 16px;
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover {
+            color: #1a1a1a;
+            border-color: #d4af37;
+            background: #fffdf5;
+            transform: translateX(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-6">
+                
+                <!-- Professional Back Button -->
+                <div class="mb-4">
+                    <a href="{% url 'dashboard' %}" class="back-btn">
+                        <i class="bi bi-arrow-left"></i> Back to Dashboard
+                    </a>
+                </div>
+
+                <div class="card luxury-card p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <span class="text-uppercase text-muted" style="font-size: 0.75rem; letter-spacing: 2.5px; font-weight: 600;">GoldenAura 960</span>
+                        <h2 class="mt-2 mb-1">Account Profile</h2>
+                        <p class="text-muted small">Manage your personal shipping address and details</p>
+                    </div>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm rounded-3 mb-4" role="alert">
+                                <i class="bi bi-check-circle-fill me-2"></i> {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        
+                        <div class="d-grid mt-4 pt-2">
+                            <button type="submit" class="btn btn-gold shadow-sm">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

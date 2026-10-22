@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Refund Details | GoldenAura 960</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        body {
+            background: #f7f5f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .box {
+            max-width: 600px;
+            margin: 60px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .title {
+            color: #8c6d28;
+            font-weight: bold;
+        }
+
+        .amount {
+            font-size: 24px;
+            color: #8c6d28;
+            font-weight: bold;
+        }
+
+        .btn-gold {
+            background: #b89742;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        .btn-gold:hover {
+            background: #8c6d28;
+            color: white;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="box">
+
+    <h2 class="title text-center mb-3">
+        Return Approved
+    </h2>
+
+
+    <p class="text-center text-muted">
+
+        Your return request has been approved.
+
+    </p>
+
+
+    <hr>
+
+
+    <p>
+        <strong>Order:</strong>
+        #{{ return_request.order.id }}
+    </p>
+
+
+    <p>
+        <strong>Product:</strong>
+        {{ return_request.item.product.name }}
+    </p>
+
+
+    <p>
+        <strong>Refund Amount:</strong>
+    </p>
+
+
+    <div class="amount mb-4">
+
+        ₹{{ return_request.refund_amount }}
+
+    </div>
+
+
+    <div class="alert alert-info">
+
+        Refund will be processed through
+        <strong>UPI</strong>.
+
+    </div>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+
+        <label class="fw-bold mb-2">
+
+            UPI ID
+
+        </label>
+
+
+        <input
+            type="text"
+            name="upi_id"
+            class="form-control mb-3"
+            placeholder="example@upi"
+            required
+        >
+
+
+        <button
+            type="submit"
+            class="btn-gold"
+        >
+
+            Submit Refund Details
+
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

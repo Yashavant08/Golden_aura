@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Poppins:wght@300;400;500&display=swap');
+
+body {
+    /* Pure Royal Gold Metallic Background Gradient */
+    background: linear-gradient(135deg, #1a1408 0%, #3d2f12 35%, #8f6f2d 65%, #2b200b 100%);
+    color: #f5f5f5;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.success-card {
+    background: rgba(15, 15, 15, 0.92);
+    border: 2px solid #F3E5AB; 
+    border-radius: 18px;
+    padding: 40px 30px;
+    max-width: 460px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 25px rgba(243, 229, 171, 0.3);
+    backdrop-filter: blur(12px);
+}
+
+.icon-container {
+    width: 80px;
+    height: 80px;
+    background: rgba(212, 175, 55, 0.15);
+    border: 2px solid #D4AF37;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 22px auto;
+    color: #F3E5AB;
+    font-size: 38px;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.success-card h1 {
+    font-family: 'Cinzel', serif;
+    color: #F3E5AB;
+    font-size: 1.7rem;
+    margin-bottom: 12px;
+}
+
+.success-card p {
+    color: #d1d1d1;
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+}
+
+.btn-gold {
+    display: inline-block;
+    background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA771C 100%);
+    color: #0d0d0d !important; /* Black bold text for high gold button contrast */
+    font-weight: 600;
+    padding: 13px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+}

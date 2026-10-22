@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Invoice #{{ order.id }} | GoldenAura 960</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Luxury Serif & Sans Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #fcfbf9;
+            --border-gold: #d4af37;
+            --gold-primary: #b89742;
+            --gold-dark: #705315;
+            --gold-light: #fdfaf2;
+            --text-main: #1a202c;
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #fdfbf7 0%, #f4ede2 100%);
+            color: var(--text-main);
+            padding: 40px 0;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, .brand-title, .invoice-heading {
+            font-family: 'Cinzel', serif !important;
+            letter-spacing: 1.2px;
+        }
+
+        .invoice-card {
+            background: #ffffff;
+            border: 2px solid var(--border-gold);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(184, 151, 66, 0.15);
+            padding: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invoice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #b89742 0%, #f3e5b8 50%, #8c6d28 100%);
+        }
+
+        .invoice-header {
+            border-bottom: 2px solid #f1ece1;
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+        }
+
+        .luxury-info-card {
+            background: var(--gold-light);
+            border: 1px solid #e2d3b5;
+            border-radius: 12px;
+            padding: 20px;
+            height: 100%;
+        }
+
+        .table {
+            color: var(--text-main) !important;
+            margin-bottom: 0;
+        }
+
+        .table th {
+            background-color: #f7f2ea !important;
+            color: var(--gold-dark) !important;
+            font-weight: 700;
+            font-size: 0.82rem;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-bottom: 2px solid var(--border-gold);
+            padding: 16px;
+        }
+
+        .table td {
+            background-color: transparent !important;
+            color: #2d3748 !important;
+            border-bottom: 1px solid #f1ece1;
+            padding: 18px 16px;
+            vertical-align: middle;
+            font-size: 0.95rem;
+        }
+
+        .summary-box {
+            background: #ffffff;
+            border: 1.5px solid var(--border-gold);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 8px 25px rgba(184, 151, 66, 0.08);
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #c5a059 0%, #997531 100%);
+            color: #ffffff;
+            font-weight: 600;
+            font-family: 'Cinzel', serif;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(184, 151, 66, 0.3);
+            letter-spacing: 0.8px;
+        }
+
+        .btn-print:hover {
+            background: linear-gradient(135deg, #d8b465 50%, #8c6d28 100%);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(184, 151, 66, 0.45);
+        }
+
+        .certification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #eef8f1;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+                padding: 0;
+            }
+            .invoice-card {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Print / Action Button -->
+        <div class="text-end mb-4 no-print">
+            <button onclick="window.print()" class="btn btn-print">
+                <i class="fas fa-print me-2"></i> Print / Download Tax Invoice
+            </button>
+        </div>
+
+        <!-- Luxury Invoice Main Container -->
+        <div class="invoice-card">
+            
+            <!-- Invoice Top Header -->
+            <div class="invoice-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+                <div>
+                    <h2 class="brand-title fw-bold mb-1" style="color: var(--gold-dark);">
+                        <i class="fas fa-gem me-2 text-warning"></i> GoldenAura 960
+                    </h2>
+                    <p class="text-muted small mb-0 fw-semibold">
+                        Certified Royal Jewellers & Fine Ornament Vault
+                    </p>
+                </div>
+                <div class="text-md-end">
+                    <h4 class="invoice-heading fw-bold mb-1 text-dark">TAX INVOICE</h4>
+                    <p class="text-muted small mb-1">
+                        <strong>Invoice No:</strong> <span class="text-dark fw-bold">#GA-960-{{ order.id }}</span>
+                    </p>
+                    <p class="text-muted small mb-0">
+                        <strong>Date:</strong> {{ order.created_at|date:"d M Y, h:i A" }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Customer & Logistics Information -->
+            <div class="row mb-4 g-3">
+                <div class="col-md-6">
+                    <div class="luxury-info-card">
+                        <h6 class="fw-bold mb-2" style="font-family: 'Cinzel', serif; color: var(--gold-dark);">
+                            <i class="fas fa-user-tie me-2"></i> Billed To:
+                        </h6>
+                        <p class="mb-1 text-dark"><strong>Name:</strong> {{ order.user.get_full_name|default:order.user.username }}</p>
+                        <p class="mb-1 text-dark"><strong>Email:</strong> {{ order.user.email|default:"N/A" }}</p>
+                        <p class="mb-0 text-dark"><strong>Shipping Vault:</strong> {{ order.shipping_address|default:"Secure Registered Address" }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="luxury-info-card">
+                        <h6 class="fw-bold mb-2" style="font-family: 'Cinzel', serif; color: var(--gold-dark);">
+                            <i class="fas fa-shield-halved me-2"></i> Order & Verification:
+                        </h6>
+                        <p class="mb-1 text-dark">
+                            <strong>Payment Mode:</strong> 
+                            <span class="text-uppercase fw-bold text-secondary">{{ order.payment_method|default:"Online Gateway" }}</span>
+                        </p>
+                        <p class="mb-2 text-dark">
+                            <strong>Order Status:</strong> 
+                            <span class="badge bg-success text-uppercase px-2 py-1">{{ order.status|default:"Confirmed" }}</span>
+                        </p>
+                        <div class="certification-badge">
+                            <i class="fas fa-check-circle"></i> Bureau 960 Hallmark Certified
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jewellery Items Table -->
+            <div class="table-responsive mb-4">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>Jewellery Item & Description</th>
+                            <th class="text-center">Qty</th>
+                            <th class="text-end">Unit Price</th>
+                            <th class="text-end">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td>
+                                <div class="fw-bold text-dark fs-6">{{ item.product.name }}</div>
+                                <small class="text-muted"><i class="fas fa-certificate text-warning me-1"></i> Pure Crafted Luxury Ornament</small>
+                            </td>
+                            <td class="text-center fw-bold">{{ item.quantity }}</td>
+                            <td class="text-end text-muted">₹ {{ item.price|floatformat:2 }}</td>
+                            <td class="text-end fw-bold" style="color: var(--gold-dark);">₹ {{ item.total_price|default:item.price|floatformat:2 }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-4">
+                                <i class="fas fa-box-open fs-3 mb-2 text-warning opacity-75 d-block"></i>
+                                Luxury order items successfully verified.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Total Calculation Box -->
+            <div class="row justify-content-end">
+                <div class="col-md-5">
+                    <div class="summary-box">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted fw-semibold">Subtotal:</span>
+                            <span class="fw-bold text-dark fs-6">₹ {{ calculated_total|floatformat:2 }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted fw-semibold">Insured Logistics:</span>
+                            <span class="text-success fw-bold">FREE</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted fw-semibold">GST / Hallmarking Tax:</span>
+                            <span class="text-dark fw-semibold">Included</span>
+                        </div>
+                        <hr class="my-3" style="border-color: var(--border-gold);">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold fs-5" style="font-family: 'Cinzel', serif; color: var(--gold-dark);">Grand Total:</span>
+                            <span class="fw-bold fs-4" style="color: var(--gold-dark);">₹ {{ calculated_total|floatformat:2 }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Authenticity Guarantee -->
+            <div class="text-center mt-5 pt-4 border-top text-muted" style="font-size: 0.82rem;">
+                <p class="mb-1">
+                    Thank you for choosing <strong>GoldenAura 960</strong>. This is a computer-generated tax invoice and requires no physical signature.
+                </p>
+                <p class="mb-0">
+                    For 24/7 Royal Concierge support, reach us at <strong>support@goldenaura960.com</strong>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GoldenAura 960 | My Orders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfbf9; color: #1a202c; }
+        h1, h2, h3, h4, h5 { font-family: 'Cinzel', serif; }
+        .text-gold { color: #8c6d28 !important; }
+        .luxury-card { background: #fff; border: 1px solid #e2d3b5; border-radius: 12px; padding: 30px; box-shadow: 0 6px 20px rgba(0,0,0,0.03); }
+        .table th { background-color: #f7f3ec !important; color: #8c6d28 !important; font-family: 'Cinzel', serif; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-gold fw-bold mb-0"><i class="fas fa-shopping-bag me-2"></i> My Order History</h2>
+            <a href="/" class="btn btn-outline-dark btn-sm">Back to Home</a>
+        </div>
+
+        <div class="luxury-card">
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for o in orders %}
+                        <tr>
+                            <td class="text-muted fw-semibold">#{{ o.id }}</td>
+                            <td class="text-gold fw-bold">₹ {{ o.total }}</td>
+                            <td>
+                                {% if o.status == 'pending' %}
+                                    <span class="badge bg-warning text-dark px-3 py-2">Pending</span>
+                                {% elif o.status == 'shipped' %}
+                                    <span class="badge bg-info text-dark px-3 py-2">Shipped</span>
+                                {% elif o.status == 'delivered' %}
+                                    <span class="badge bg-success px-3 py-2">Delivered</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3" class="text-center py-4 text-muted">You haven't placed any orders yet.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

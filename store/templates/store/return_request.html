@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GoldenAura 960 | Return Request</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        :root {
+            --gold: #b89742;
+            --gold-dark: #8c6d28;
+            --border: #e2d3b5;
+            --background: #fcfbf9;
+        }
+
+        body {
+            background: var(--background);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #1a202c;
+        }
+
+        .return-wrapper {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .return-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.07);
+        }
+
+        .brand-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-dark);
+            font-weight: 700;
+        }
+
+        .page-icon {
+            width: 60px;
+            height: 60px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #f8f1df;
+            color: var(--gold-dark);
+
+            font-size: 24px;
+        }
+
+        .order-info {
+            background: #faf8f3;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .info-label {
+            display: block;
+            font-size: 0.75rem;
+            color: #718096;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-weight: 700;
+        }
+
+        .product-card {
+            background: #fffdf8;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+        }
+
+        .product-name {
+            font-weight: 700;
+        }
+
+        .product-quantity {
+            color: #718096;
+            font-size: 0.8rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .form-select,
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+        }
+
+        .form-select:focus,
+        .form-control:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 0.2rem rgba(184, 151, 66, 0.12);
+        }
+
+        .btn-gold {
+            background: linear-gradient(
+                135deg,
+                #c5a059,
+                #997531
+            );
+
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 24px;
+            font-weight: 600;
+        }
+
+        .btn-gold:hover {
+            color: white;
+            background: linear-gradient(
+                135deg,
+                #d8b465,
+                #8c6d28
+            );
+        }
+
+        .btn-back {
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 12px 22px;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .btn-back:hover {
+            border-color: var(--gold);
+            color: var(--gold-dark);
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="return-wrapper">
+
+    <div class="return-card">
+
+
+        <!-- HEADER -->
+
+        <div class="text-center mb-4">
+
+            <div class="page-icon mb-3">
+                <i class="fas fa-rotate-left"></i>
+            </div>
+
+            <h2 class="brand-title">
+                Return / Exchange Request
+            </h2>
+
+            <p class="text-muted">
+                Please provide the details of your return request.
+            </p>
+
+        </div>
+
+
+        <!-- ORDER DETAILS -->
+
+        <div class="order-info mb-4">
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <span class="info-label">
+                        Order ID
+                    </span>
+
+                    <span class="info-value">
+                        #{{ order.id }}
+                    </span>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <span class="info-label">
+                        Order Status
+                    </span>
+
+                    <span class="info-value text-success">
+                        {{ order.status }}
+                    </span>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <span class="info-label">
+                        Customer
+                    </span>
+
+                    <span class="info-value">
+                        {{ order.full_name }}
+                    </span>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <span class="info-label">
+                        Order Amount
+                    </span>
+
+                    <span class="info-value" style="color:#8c6d28;">
+                        ₹ {{ order.total_amount }}
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- PRODUCT -->
+
+            <div class="mb-4">
+
+                <label class="form-label">
+                    Product
+                </label>
+
+
+                {% for item in order_items %}
+
+                <div class="product-card mb-2">
+
+                    <div class="d-flex align-items-center gap-3">
+
+                        <i
+                            class="fas fa-gem"
+                            style="color:#b89742; font-size:22px;"
+                        ></i>
+
+                        <div>
+
+                            <div class="product-name">
+                                {{ item.product.name }}
+                            </div>
+
+                            <div class="product-quantity">
+                                Quantity: {{ item.quantity }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Send item ID to backend -->
+
+                <input
+                    type="hidden"
+                    name="item_id"
+                    value="{{ item.id }}"
+                >
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- REASON -->
+
+            <div class="mb-4">
+
+                <label
+                    for="reason"
+                    class="form-label"
+                >
+                    Return / Exchange Reason
+                </label>
+
+
+                <select
+                    name="reason"
+                    id="reason"
+                    class="form-select"
+                    required
+                >
+
+                    <option value="">
+                        Select a reason
+                    </option>
+
+                    <option value="Product is damaged">
+                        Product is damaged
+                    </option>
+
+                    <option value="Product is defective">
+                        Product is defective
+                    </option>
+
+                    <option value="Wrong product received">
+                        Wrong product received
+                    </option>
+
+                    <option value="Product does not match the description">
+                        Product does not match the description
+                    </option>
+
+                    <option value="Product size is not suitable">
+                        Product size is not suitable
+                    </option>
+
+                    <option value="Changed my mind">
+                        Changed my mind
+                    </option>
+
+                    <option value="Quality is not as expected">
+                        Quality is not as expected
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- MANUAL MESSAGE -->
+
+            <div class="mb-4">
+
+                <label
+                    for="message"
+                    class="form-label"
+                >
+                    Additional Message
+                    <span class="text-muted fw-normal">
+                        (Optional)
+                    </span>
+                </label>
+
+
+                <textarea
+                    name="message"
+                    id="message"
+                    class="form-control"
+                    rows="5"
+                    placeholder="Write any additional details about your return or exchange..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div
+                class="d-flex justify-content-between align-items-center gap-3"
+            >
+
+                <a
+                    href="{% url 'dashboard' %}"
+                    class="btn-back"
+                >
+
+                    <i class="fas fa-arrow-left me-2"></i>
+
+                    Back
+
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="btn-gold"
+                >
+
+                    <i class="fas fa-paper-plane me-2"></i>
+
+                    Submit Request
+
+                </button>
+
+            </div>
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

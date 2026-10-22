@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #fff8e7, #fdf1d6);
+    margin: 0;
+    padding: 30px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #b8860b;
+    margin-bottom: 35px;
+    font-size: 32px;
+}
+
+h2 {
+    color: #8b6508;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Cart item */
+hr {
+    border: 0;
+    border-top: 2px solid #e6c76a;
+    margin: 25px 0;
+}
+
+/* Buttons */
+a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 8px;
+    background-color: #d4af37;
+    color: white;
+    font-weight: bold;
+    margin: 5px;
+    transition: 0.2s;
+}
+
+a:hover {
+    background-color: #b8860b;
+    transform: scale(1.03);
+}
+
+/* Add Product button */
+a[href*="product_list"] {
+    background-color: #8b5cf6;
+}
+
+a[href*="product_list"]:hover {
+    background-color: #6d28d9;
+}
+
+/* Delete button */
+a[href*="remove"] {
+    background-color: #dc3545;
+}
+
+a[href*="remove"]:hover {
+    background-color: #b02a37;
+}
