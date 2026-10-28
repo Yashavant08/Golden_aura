@@ -1,0 +1,34 @@
+:root {
+  --mocha: #51382f;
+  --mocha-deep: #2e1d19;
+  --champagne: #d6b16d;
+  --champagne-light: #f4e8d0;
+  --amber: #b85c2a;
+}
+
+body {
+  background: radial-gradient(ellipse 42rem 29rem at 100% 0%, rgba(214, 177, 109, .42), transparent 70%), radial-gradient(ellipse 28rem 24rem at 0% 55%, rgba(184, 92, 42, .10), transparent 72%), repeating-linear-gradient(115deg, rgba(81, 56, 47, .018) 0 1px, transparent 1px 10px), linear-gradient(135deg, #fffaf3, #f7f0e7 52%, #ead9c5) !important;
+  color: var(--mocha-deep) !important;
+}
+
+.btn-primary, .btn-gold, .btn-purple, .btn-submit, .btn-save {
+  background: linear-gradient(135deg, var(--mocha-deep), var(--mocha)) !important;
+  border-color: var(--mocha-deep) !important;
+  color: #fffaf2 !important;
+}
+
+.btn-primary:hover, .btn-gold:hover, .btn-purple:hover, .btn-submit:hover, .btn-save:hover {
+  background: linear-gradient(135deg, var(--amber), var(--mocha-deep)) !important;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--amber) !important;
+  box-shadow: 0 0 0 .22rem rgba(184, 92, 42, .14) !important;
+}
+
+.card, .form-card, .auth-card, .profile-card, .content-card {
+  border-color: rgba(214, 177, 109, .58) !important;
+  box-shadow: 0 14px 30px rgba(81, 56, 47, .10) !important;
+}
+
+.text-warning, .gold-text, .text-gold { color: var(--amber) !important; }

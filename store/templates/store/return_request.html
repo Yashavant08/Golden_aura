@@ -1,446 +1,270 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return / Exchange Request | GoldenAura 960</title>
 
-    <title>GoldenAura 960 | Return Request</title>
-
-    <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-
-    <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    >
-
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+    <!-- Bootstrap & FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-
         :root {
-            --gold: #b89742;
-            --gold-dark: #8c6d28;
-            --border: #e2d3b5;
-            --background: #fcfbf9;
+            --mocha-brown: #5b4632;
+            --mocha-dark: #3b2c20;
+            --champagne-gold: #f4d9a0;
+            --burnt-amber: #cb873c;
+            --bg-ivory: #f7f1e8;
+            --card-bg: #ffffff;
+            --text-dark: #281816;
+            --text-muted: #6b5b4d;
+            --border-warm: #e6dec5;
         }
 
         body {
-            background: var(--background);
+            background-color: var(--bg-ivory);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            color: #1a202c;
+            color: var(--text-dark);
+            min-height: 100vh;
         }
 
-        .return-wrapper {
+        .wrapper {
             max-width: 800px;
-            margin: 50px auto;
+            margin: 40px auto;
             padding: 20px;
         }
 
-        .return-card {
-            background: #ffffff;
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 35px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.07);
+        .card-box {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(91, 70, 50, 0.12), 0 0 25px rgba(203, 135, 60, 0.15);
+            border: 1px solid var(--border-warm);
         }
 
-        .brand-title {
+        .royal-font {
             font-family: 'Cinzel', serif;
-            color: var(--gold-dark);
-            font-weight: 700;
+        }
+
+        .title {
+            font-family: 'Cinzel', serif;
+            color: var(--mocha-brown);
+            font-weight: 800;
         }
 
         .page-icon {
             width: 60px;
             height: 60px;
-            margin: auto;
-
+            margin: 0 auto 15px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-
             border-radius: 50%;
-
-            background: #f8f1df;
-            color: var(--gold-dark);
-
-            font-size: 24px;
+            background: rgba(244, 217, 160, 0.25);
+            color: var(--mocha-brown);
+            font-size: 22px;
+            border: 1px solid var(--border-warm);
         }
 
         .order-info {
-            background: #faf8f3;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 18px;
+            background: var(--bg-ivory);
+            border: 1px solid var(--border-warm);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 30px;
         }
 
-        .info-label {
-            display: block;
-            font-size: 0.75rem;
-            color: #718096;
-            margin-bottom: 4px;
-        }
-
-        .info-value {
-            font-weight: 700;
-        }
-
-        .product-card {
-            background: #fffdf8;
-            border: 1px solid var(--border);
-            border-radius: 12px;
+        .product-box {
+            background: #fffdfb;
+            border: 1.5px solid var(--border-warm);
             padding: 16px;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .product-name {
-            font-weight: 700;
-        }
-
-        .product-quantity {
-            color: #718096;
-            font-size: 0.8rem;
+        .product-box:hover {
+            border-color: var(--burnt-amber);
+            background: #ffffff;
         }
 
         .form-label {
-            font-weight: 600;
+            font-weight: 700;
+            color: var(--mocha-brown);
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
         }
 
-        .form-select,
-        .form-control {
+        .form-select, .form-control {
+            background-color: var(--bg-ivory);
+            border: 1.5px solid var(--border-warm);
             border-radius: 10px;
             padding: 12px;
+            color: var(--text-dark);
         }
 
-        .form-select:focus,
-        .form-control:focus {
-            border-color: var(--gold);
-            box-shadow: 0 0 0 0.2rem rgba(184, 151, 66, 0.12);
+        .form-select:focus, .form-control:focus {
+            background-color: #ffffff;
+            border-color: var(--burnt-amber);
+            box-shadow: 0 0 0 4px rgba(203, 135, 60, 0.18);
         }
 
         .btn-gold {
-            background: linear-gradient(
-                135deg,
-                #c5a059,
-                #997531
-            );
-
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--burnt-amber) 0%, var(--mocha-brown) 100%);
+            color: #ffffff;
             font-weight: 600;
+            border: none;
+            padding: 12px 26px;
+            border-radius: 10px;
+            box-shadow: 0 6px 18px rgba(203, 135, 60, 0.28);
+            transition: all 0.3s ease;
         }
 
         .btn-gold:hover {
-            color: white;
-            background: linear-gradient(
-                135deg,
-                #d8b465,
-                #8c6d28
-            );
+            background: linear-gradient(135deg, var(--mocha-brown) 0%, var(--mocha-dark) 100%);
+            color: var(--champagne-gold);
         }
 
         .btn-back {
-            border: 1px solid #d1d5db;
-            border-radius: 10px;
-            padding: 12px 22px;
             text-decoration: none;
-            color: #374151;
+            color: var(--mocha-brown);
+            border: 1.5px solid var(--border-warm);
+            padding: 12px 24px;
+            border-radius: 10px;
             font-weight: 600;
+            background: #ffffff;
+            transition: all 0.3s ease;
         }
 
         .btn-back:hover {
-            border-color: var(--gold);
-            color: var(--gold-dark);
+            background: var(--bg-ivory);
+            border-color: var(--burnt-amber);
         }
-
     </style>
-
 </head>
-
 
 <body>
 
-
-<div class="return-wrapper">
-
-    <div class="return-card">
-
-
-        <!-- HEADER -->
-
+<div class="wrapper">
+    <div class="card-box">
         <div class="text-center mb-4">
-
-            <div class="page-icon mb-3">
+            <div class="page-icon">
                 <i class="fas fa-rotate-left"></i>
             </div>
-
-            <h2 class="brand-title">
+            <h2 class="title mb-1">
                 Return / Exchange Request
             </h2>
-
-            <p class="text-muted">
-                Please provide the details of your return request.
+            <p class="text-muted small">
+                Submit your request for concierge review & secure pickup.
             </p>
-
         </div>
-
 
         <!-- ORDER DETAILS -->
-
-        <div class="order-info mb-4">
-
+        <div class="order-info">
             <div class="row g-3">
-
                 <div class="col-md-6">
-
-                    <span class="info-label">
-                        Order ID
-                    </span>
-
-                    <span class="info-value">
-                        #{{ order.id }}
-                    </span>
-
+                    <span class="text-muted small d-block">Order ID</span>
+                    <strong class="text-dark">#{{ order.id }}</strong>
                 </div>
-
-
                 <div class="col-md-6">
-
-                    <span class="info-label">
-                        Order Status
-                    </span>
-
-                    <span class="info-value text-success">
-                        {{ order.status }}
-                    </span>
-
+                    <span class="text-muted small d-block">Status</span>
+                    <strong class="text-success">{{ order.status }}</strong>
                 </div>
-
-
                 <div class="col-md-6">
-
-                    <span class="info-label">
-                        Customer
-                    </span>
-
-                    <span class="info-value">
-                        {{ order.full_name }}
-                    </span>
-
+                    <span class="text-muted small d-block">Customer</span>
+                    <strong class="text-dark">{{ order.full_name }}</strong>
                 </div>
-
-
                 <div class="col-md-6">
-
-                    <span class="info-label">
-                        Order Amount
-                    </span>
-
-                    <span class="info-value" style="color:#8c6d28;">
-                        ₹ {{ order.total_amount }}
-                    </span>
-
+                    <span class="text-muted small d-block">Order Amount</span>
+                    <strong style="color: var(--burnt-amber);">₹{{ order.total_amount }}</strong>
                 </div>
-
             </div>
-
         </div>
 
-
-        <!-- FORM -->
-
         <form method="POST">
-
             {% csrf_token %}
 
+            <!-- PRODUCT SELECTION -->
+            <label class="form-label mb-2 text-uppercase">
+                Select Product for Return/Exchange
+            </label>
 
-            <!-- PRODUCT -->
-
-            <div class="mb-4">
-
-                <label class="form-label">
-                    Product
-                </label>
-
-
-                {% for item in order_items %}
-
-                <div class="product-card mb-2">
-
-                    <div class="d-flex align-items-center gap-3">
-
-                        <i
-                            class="fas fa-gem"
-                            style="color:#b89742; font-size:22px;"
-                        ></i>
-
-                        <div>
-
-                            <div class="product-name">
-                                {{ item.product.name }}
-                            </div>
-
-                            <div class="product-quantity">
-                                Quantity: {{ item.quantity }}
-                            </div>
-
+            {% for item in order_items %}
+            <label class="product-box d-block">
+                <div class="d-flex align-items-center gap-3">
+                    <input
+                        type="radio"
+                        name="item_id"
+                        value="{{ item.id }}"
+                        required
+                        class="form-check-input mt-0"
+                    >
+                    <i class="fas fa-gem" style="color: var(--burnt-amber); font-size: 20px;"></i>
+                    <div class="flex-grow-1">
+                        <div class="fw-bold text-dark">
+                            {{ item.product.name }}
                         </div>
-
+                        <small class="text-muted">
+                            Quantity: {{ item.quantity }} &nbsp;|&nbsp; Price: ₹{{ item.price }}
+                        </small>
                     </div>
-
                 </div>
-
-
-                <!-- Send item ID to backend -->
-
-                <input
-                    type="hidden"
-                    name="item_id"
-                    value="{{ item.id }}"
-                >
-
-                {% endfor %}
-
+            </label>
+            {% empty %}
+            <div class="alert alert-warning py-3 text-center small rounded-3">
+                No eligible products found in this order.
             </div>
-
+            {% endfor %}
 
             <!-- REASON -->
-
-            <div class="mb-4">
-
-                <label
-                    for="reason"
-                    class="form-label"
-                >
+            <div class="mt-4">
+                <label for="reason" class="form-label mb-2 text-uppercase">
                     Return / Exchange Reason
                 </label>
-
-
-                <select
-                    name="reason"
-                    id="reason"
-                    class="form-select"
-                    required
-                >
-
-                    <option value="">
-                        Select a reason
-                    </option>
-
-                    <option value="Product is damaged">
-                        Product is damaged
-                    </option>
-
-                    <option value="Product is defective">
-                        Product is defective
-                    </option>
-
-                    <option value="Wrong product received">
-                        Wrong product received
-                    </option>
-
-                    <option value="Product does not match the description">
-                        Product does not match the description
-                    </option>
-
-                    <option value="Product size is not suitable">
-                        Product size is not suitable
-                    </option>
-
-                    <option value="Changed my mind">
-                        Changed my mind
-                    </option>
-
-                    <option value="Quality is not as expected">
-                        Quality is not as expected
-                    </option>
-
-                    <option value="Other">
-                        Other
-                    </option>
-
+                <select name="reason" id="reason" class="form-select" required>
+                    <option value="">Select a reason</option>
+                    <option value="Product is damaged">Product is damaged</option>
+                    <option value="Product is defective">Product is defective</option>
+                    <option value="Wrong product received">Wrong product received</option>
+                    <option value="Product does not match the description">Product does not match the description</option>
+                    <option value="Product size is not suitable">Product size is not suitable</option>
+                    <option value="Changed my mind">Changed my mind</option>
+                    <option value="Quality is not as expected">Quality is not as expected</option>
+                    <option value="Other">Other</option>
                 </select>
-
             </div>
 
-
-            <!-- MANUAL MESSAGE -->
-
-            <div class="mb-4">
-
-                <label
-                    for="message"
-                    class="form-label"
-                >
-                    Additional Message
-                    <span class="text-muted fw-normal">
-                        (Optional)
-                    </span>
+            <!-- MESSAGE -->
+            <div class="mt-4">
+                <label for="message" class="form-label mb-2 text-uppercase">
+                    Additional Message <span class="text-muted fw-normal">(Optional)</span>
                 </label>
-
-
                 <textarea
                     name="message"
                     id="message"
                     class="form-control"
-                    rows="5"
+                    rows="4"
                     placeholder="Write any additional details about your return or exchange..."
                 ></textarea>
-
             </div>
-
 
             <!-- BUTTONS -->
-
-            <div
-                class="d-flex justify-content-between align-items-center gap-3"
-            >
-
-                <a
-                    href="{% url 'dashboard' %}"
-                    class="btn-back"
-                >
-
-                    <i class="fas fa-arrow-left me-2"></i>
-
-                    Back
-
+            <div class="d-flex justify-content-between align-items-center mt-4 pt-2">
+                <a href="{% url 'dashboard' %}" class="btn-back">
+                    <i class="fas fa-arrow-left me-2"></i> Back
                 </a>
-
-
-                <button
-                    type="submit"
-                    class="btn-gold"
-                >
-
-                    <i class="fas fa-paper-plane me-2"></i>
-
-                    Submit Request
-
+                <button type="submit" class="btn-gold">
+                    <i class="fas fa-paper-plane me-2"></i> Submit Request
                 </button>
-
             </div>
-
         </form>
-
-
     </div>
-
 </div>
 
-
 </body>
-
 </html>

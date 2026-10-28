@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,6 +107,32 @@
             box-shadow: 0 8px 25px rgba(184, 151, 66, 0.08);
         }
 
+        /* Top Action Buttons */
+        .btn-back-dashboard {
+            background: #ffffff;
+            color: var(--gold-dark);
+            font-weight: 600;
+            font-family: 'Cinzel', serif;
+            border: 1.5px solid var(--border-gold);
+            padding: 11px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            letter-spacing: 0.5px;
+        }
+
+        .btn-back-dashboard:hover {
+            background: var(--gold-dark);
+            color: #ffffff;
+            border-color: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(112, 83, 21, 0.25);
+        }
+
         .btn-print {
             background: linear-gradient(135deg, #c5a059 0%, #997531 100%);
             color: #ffffff;
@@ -158,9 +185,14 @@
 </head>
 <body>
 
-    <div class="container">
-        <!-- Print / Action Button -->
-        <div class="text-end mb-4 no-print">
+    <div class="container" style="max-width: 900px;">
+        
+        <!-- Action Buttons Bar (Back to Dashboard + Print) -->
+        <div class="d-flex justify-content-between align-items-center mb-4 no-print">
+            <a href="{% url 'dashboard' %}" class="btn-back-dashboard">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+            
             <button onclick="window.print()" class="btn btn-print">
                 <i class="fas fa-print me-2"></i> Print / Download Tax Invoice
             </button>

@@ -17,17 +17,21 @@
 
     <style>
         :root {
-            --purple-primary: #4B2067;
-            --purple-dark: #36154C;
-            --gold-accent: #D4AF37;
-            --gold-light: #FAF4E5;
-            --bg-light: #F9FAFB;
+            --mocha: #51382f;
+            --mocha-deep: #2e1d19;
+            --champagne: #d6b16d;
+            --amber: #b85c2a;
+            --gold-light: #f4e8d0;
+            --bg-light: #f7f0e7;
+            --purple-primary: var(--mocha);
+            --purple-dark: var(--mocha-deep);
+            --gold-accent: var(--champagne);
         }
 
         body {
-            background-color: var(--bg-light);
+            background: radial-gradient(ellipse 42rem 29rem at 100% 0%, rgba(214, 177, 109, 0.42), transparent 70%), radial-gradient(ellipse 28rem 24rem at 0% 72%, rgba(184, 92, 42, 0.11), transparent 72%), repeating-linear-gradient(115deg, rgba(81, 56, 47, 0.018) 0 1px, transparent 1px 10px), linear-gradient(135deg, #fffaf3, var(--bg-light) 52%, #ead9c5);
             font-family: 'Poppins', sans-serif;
-            color: #333;
+            color: var(--mocha-deep);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -40,10 +44,11 @@
 
         /* Header / Navbar */
         .navbar-custom {
-            background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            background-color: rgba(255, 253, 249, 0.9);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 5px 22px rgba(81, 56, 47, 0.08);
             padding: 16px 0;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid rgba(214, 177, 109, 0.45);
         }
 
         .navbar-custom a.brand-logo {
@@ -57,10 +62,10 @@
 
         /* Success Card */
         .success-card {
-            background: #ffffff;
-            border: 1px solid #EAD8A7;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(75, 32, 103, 0.08);
+            background: linear-gradient(135deg, rgba(255, 253, 249, 0.96), rgba(244, 232, 208, 0.78));
+            border: 1px solid rgba(214, 177, 109, 0.7);
+            border-radius: 24px;
+            box-shadow: 0 22px 44px rgba(81, 56, 47, 0.16);
             padding: 40px 30px;
             max-width: 550px;
             margin: 0 auto;
@@ -76,7 +81,7 @@
             left: 0;
             width: 100%;
             height: 6px;
-            background: linear-gradient(90deg, var(--gold-accent), var(--purple-primary), var(--gold-accent));
+            background: linear-gradient(90deg, var(--amber), var(--champagne), var(--mocha-deep), var(--champagne), var(--amber));
         }
 
         /* Animated Success Badge */
@@ -90,18 +95,18 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 24px auto;
-            color: var(--purple-primary);
+            color: var(--amber);
             font-size: 2.5rem;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+            box-shadow: 0 0 20px rgba(214, 177, 109, 0.30);
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
             0% {
-                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+                box-shadow: 0 0 0 0 rgba(214, 177, 109, 0.42);
             }
             70% {
-                box-shadow: 0 0 0 18px rgba(212, 175, 55, 0);
+                box-shadow: 0 0 0 18px rgba(214, 177, 109, 0);
             }
             100% {
                 box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
@@ -110,7 +115,7 @@
 
         /* Buttons */
         .btn-purple {
-            background-color: var(--purple-primary);
+            background: linear-gradient(135deg, var(--mocha-deep), var(--mocha));
             color: #FFF;
             border-radius: 30px;
             padding: 12px 32px;
@@ -123,19 +128,22 @@
         .btn-purple:hover {
             background-color: var(--purple-dark);
             color: #FFF;
-            box-shadow: 0 4px 15px rgba(75, 32, 103, 0.25);
+            box-shadow: 0 8px 20px rgba(81, 56, 47, 0.25);
         }
 
         /* Order Details Box */
         .order-info-box {
-            background-color: #FBF9F5;
-            border: 1px dashed #EAD8A7;
+            background-color: rgba(255, 250, 242, 0.78);
+            border: 1px dashed var(--champagne);
             border-radius: 12px;
             padding: 16px;
             margin: 24px 0;
         }
 
         .text-purple { color: var(--purple-primary); }
+        .text-warning { color: var(--champagne) !important; }
+        .success-eyebrow { color: var(--amber); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+        .success-note { color: var(--mocha); background: rgba(255, 253, 249, 0.58); border-radius: 12px; padding: 10px 14px; font-size: 0.78rem; }
     </style>
 </head>
 
@@ -160,6 +168,7 @@
             </div>
 
             <!-- Title & Subtitle -->
+            <div class="success-eyebrow mb-2">A timeless piece is on its way</div>
             <h2 class="royal-font fw-bold text-purple mb-2">Order Placed Successfully!</h2>
             <p class="text-muted small mb-3">
                 Thank you for choosing GoldenAura 960. Your luxury order is being handcrafted & processed with extreme care.
@@ -184,9 +193,14 @@
                 A confirmation with order details has been saved to your account.
             </p>
 
+            <p class="success-note mb-4"><i class="fa-solid fa-gem me-1" style="color: var(--amber);"></i> Each GoldenAura piece is packed with care, authenticity and a little celebration.</p>
+
             <!-- Navigation Button -->
             <a href="{% url 'home' %}" class="btn btn-purple shadow-sm">
                 <i class="fa-solid fa-bag-shopping me-2"></i>Continue Shopping
+            </a>
+            <a href="{% url 'my_orders' %}" class="btn btn-outline-dark rounded-pill ms-2 px-4 py-2">
+                View My Orders
             </a>
 
         </div>

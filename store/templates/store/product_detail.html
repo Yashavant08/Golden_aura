@@ -1,84 +1,100 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ product.name }} - GoldenAura 960</title>
+    <title>{{ product.name }} | GoldenAura 960 Luxury</title>
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    {% load static %}
-    <link href="{% static 'store/style.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --purple-primary: #4B2067;
-            --purple-dark: #36154C;
-            --gold-accent: #D4AF37;
-            --bg-light: #F8F9FA;
+            --primary-gold: #d6b16d;
+            --champagne: #f4e8d0;
+            --dark-gold: #b85c2a;
+            --amber: #b85c2a;
+            --mocha: #51382f;
+            --mocha-deep: #2e1d19;
+            --light-gold: #fff8ed;
+            --border-gold: #e8d7b9;
+            --bg-main: #f7f0e7;
+            --text-dark: #30201b;
         }
 
         body {
-            background-color: var(--bg-light);
-            font-family: 'Poppins', sans-serif;
-            padding-bottom: 60px;
+            background:
+                radial-gradient(ellipse 42rem 29rem at 100% 0%, rgba(214, 177, 109, 0.42), transparent 70%),
+                radial-gradient(ellipse 28rem 24rem at 0% 52%, rgba(184, 92, 42, 0.10), transparent 72%),
+                repeating-linear-gradient(115deg, rgba(81, 56, 47, 0.018) 0 1px, transparent 1px 10px),
+                linear-gradient(135deg, #fffaf3, var(--bg-main) 52%, #ead9c5);
+            color: var(--text-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding-bottom: 70px;
         }
 
         .royal-heading {
             font-family: 'Cinzel', serif;
-            color: var(--purple-primary);
+            letter-spacing: 0.5px;
+            color: var(--mocha-deep);
         }
 
         /* Top Navbar */
         .navbar-custom {
-            background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            padding: 12px 0;
+            background: rgba(255, 253, 249, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 22px rgba(81, 56, 47, 0.08);
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-gold);
         }
 
         .navbar-custom a {
             text-decoration: none;
-            color: var(--purple-primary);
+            color: var(--mocha-deep);
             font-family: 'Cinzel', serif;
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
         }
 
         /* Back Button Styling */
         .btn-back {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: var(--purple-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 25px;
+            color: var(--mocha);
             font-weight: 500;
+            font-size: 0.85rem;
             text-decoration: none;
-            padding: 6px 14px;
-            border: 1px solid #e6d5a8;
-            border-radius: 8px;
-            background: #ffffff;
+            padding: 7px 16px;
+            border: 1px solid var(--border-gold);
+            border-radius: 30px;
+            background: rgba(255, 253, 249, 0.9);
             transition: all 0.3s ease;
         }
 
         .btn-back:hover {
-            background-color: var(--purple-primary);
+            background-color: var(--mocha-deep);
             color: #ffffff;
-            border-color: var(--purple-primary);
+            border-color: var(--text-dark);
         }
 
-        /* Top Carousel Slider (Centered ~45% width) */
+        /* Top Carousel Slider Box */
         .top-slider-box {
-            max-width: 550px;
+            max-width: 500px;
             margin: 0 auto 30px auto;
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            background: #ffffff;
-            border: 1px solid #e6d5a8;
+            box-shadow: 0 22px 44px rgba(81, 56, 47, 0.18);
+            background: #fffdf9;
+            border: 1px solid var(--border-gold);
         }
 
         .carousel-item img {
@@ -87,23 +103,88 @@
             object-fit: cover;
         }
 
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            background-color: rgba(0, 0, 0, 0.6);
+        .product-page-shell { position: relative; }
+        .product-page-shell::before {
+            content: '';
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border: 1px solid rgba(214, 177, 109, 0.28);
             border-radius: 50%;
-            padding: 20px;
-            background-size: 50%;
+            top: 95px;
+            left: -220px;
+            box-shadow: 0 0 0 28px rgba(214, 177, 109, 0.05), 0 0 0 68px rgba(184, 92, 42, 0.025);
+            pointer-events: none;
         }
 
-        /* Purity Badge */
-        .purity-badge {
-            background-color: #fff8e7;
-            color: #8a6d3b;
-            border: 1px solid var(--gold-accent);
-            font-size: 0.85rem;
-            padding: 5px 12px;
-            border-radius: 20px;
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            padding: 18px;
+            background-size: 40%;
+        }
+
+        /* Luxury Specs Badges */
+        .spec-badge {
+            background-color: var(--light-gold);
+            color: var(--mocha);
+            border: 1px solid var(--border-gold);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Size Selection Buttons */
+        .size-radio-btn {
+            display: none;
+        }
+
+        .size-custom-label {
             display: inline-block;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            background: #fffdf9;
+            color: var(--mocha);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .size-radio-btn:checked + .size-custom-label {
+            background-color: var(--mocha-deep);
+            color: #ffffff;
+            border-color: var(--mocha-deep);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Tanishq Accordion Styling */
+        .tanishq-accordion .accordion-button {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.88rem;
+            letter-spacing: 0.5px;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+
+        .tanishq-accordion .accordion-button:not(.collapsed) {
+            color: var(--amber);
+            background-color: var(--light-gold);
+            box-shadow: none;
+        }
+
+        .tanishq-accordion .accordion-item {
+            border: 1px solid var(--border-gold) !important;
+            border-radius: 14px !important;
+            margin-bottom: 12px;
+            overflow: hidden;
         }
 
         /* Star Rating Form Styling */
@@ -111,9 +192,9 @@
             display: inline-flex !important;
             flex-direction: row-reverse !important;
             justify-content: flex-end !important;
-            gap: 8px !important;
-            margin-top: 6px !important;
-            margin-bottom: 15px !important;
+            gap: 6px !important;
+            margin-top: 4px !important;
+            margin-bottom: 12px !important;
         }
 
         .rating input[type="radio"] {
@@ -121,81 +202,94 @@
         }
 
         .rating label {
-            font-size: 32px !important;
+            font-size: 28px !important;
             color: #d9d9d9 !important;
             cursor: pointer !important;
-            transition: transform 0.2s ease, color 0.2s ease !important;
+            transition: color 0.2s ease !important;
         }
 
         .rating label:hover,
         .rating label:hover ~ label,
         .rating input[type="radio"]:checked ~ label {
-            color: var(--gold-accent) !important;
+            color: var(--primary-gold) !important;
         }
 
-        .rating label:hover {
-            transform: scale(1.2) !important;
+        /* Review Form Box & Cards */
+        .review-box, .review-card {
+            background: rgba(255, 253, 249, 0.92);
+            border: 1px solid var(--border-gold);
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
         }
 
-        /* Review Form Box */
-        #reviewForm {
-            margin-top: 20px;
+        .review-box {
             padding: 25px;
-            background: #ffffff;
-            border: 1px solid #e6d5a8;
-            border-radius: 16px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            margin-top: 20px;
         }
 
-        #reviewForm input[type="text"],
-        #reviewForm textarea {
+        .review-box input[type="text"],
+        .review-box textarea {
             width: 100%;
-            padding: 11px 13px;
-            border: 1px solid #d8d8d8;
-            border-radius: 9px;
+            padding: 12px 15px;
+            border: 1px solid #e0d6c3;
+            border-radius: 12px;
             outline: none;
-            background: #ffffff;
-            box-sizing: border-box;
+            background: #fff9f0;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .review-card {
+            padding: 20px;
             margin-bottom: 15px;
         }
 
         /* Buttons */
-        .btn-purple-primary {
-            background-color: var(--purple-primary);
-            color: #ffffff;
+        .btn-gold-primary {
+            background: linear-gradient(135deg, var(--mocha-deep) 0%, var(--mocha) 100%);
+            color: #fff8ec;
             font-weight: 600;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 12px 20px;
+            border: 1px solid var(--champagne, #d6b16d);
+            transition: all 0.3s ease;
         }
 
-        .btn-purple-primary:hover {
-            background-color: var(--purple-dark);
+        .btn-gold-primary:hover {
+            background: linear-gradient(135deg, var(--amber), var(--mocha-deep));
             color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
 
-        #reviewButton {
+        #reviewToggleBtn {
             padding: 12px 24px;
-            border: 1px solid var(--gold-accent);
-            border-radius: 8px;
-            background: var(--gold-accent);
-            color: #000000;
+            border: 1px solid var(--primary-gold);
+            border-radius: 12px;
+            background: rgba(255, 253, 249, 0.92);
+            color: var(--amber);
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        #reviewButton:hover {
-            background: #b89528;
+        #reviewToggleBtn:hover {
+            background: var(--light-gold);
         }
 
-        /* Review Cards */
-        .review-card {
-            background: #ffffff;
-            border: 1px solid #e6d5a8;
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-        }
+        .text-warning { color: var(--primary-gold) !important; }
+        .top-slider-box { border-color: rgba(214, 177, 109, 0.7); }
+        .carousel-item img { filter: saturate(1.05) contrast(1.02); }
+        .trust-card { background: rgba(255, 253, 249, 0.88); border-color: var(--border-gold) !important; }
+        .product-details-panel { position: relative; overflow: hidden; background: linear-gradient(120deg, rgba(255, 253, 249, 0.94), rgba(244, 232, 208, 0.72)); border: 1px solid rgba(214, 177, 109, 0.62); border-radius: 22px; padding: 32px 26px; box-shadow: 0 18px 36px rgba(81, 56, 47, 0.10); }
+        .product-details-panel::before { content: ''; position: absolute; inset: 0; background: linear-gradient(125deg, transparent 62%, rgba(184, 92, 42, 0.06)); pointer-events: none; }
+        .product-details-panel > * { position: relative; z-index: 1; }
+        .product-eyebrow { color: var(--amber); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+        .product-price { color: var(--amber) !important; font-family: 'Cinzel', serif; font-size: 1.7rem; letter-spacing: 0.4px; }
+        .buy-actions .btn-gold-primary { min-height: 48px; }
+        .buy-actions .btn-outline-danger, .buy-actions .btn-outline-secondary { border-color: var(--primary-gold); color: var(--mocha) !important; background: rgba(255, 253, 249, 0.85); }
+        .buy-actions .btn-outline-danger:hover, .buy-actions .btn-outline-secondary:hover { background: var(--champagne, #f4e8d0); }
+        @media (max-width: 576px) { .product-details-panel { padding: 25px 16px; } .top-slider-box { border-radius: 16px; } .carousel-item img { height: 330px; } }
     </style>
 </head>
 
@@ -203,30 +297,26 @@
 
     <!-- NAVBAR -->
     <div class="navbar-custom text-center mb-4">
-        <a href="{% url 'product_list' %}">
+        <a href="{% url 'category_page' %}">
             <i class="fa-solid fa-gem text-warning me-1"></i>GOLDENAURA 960
         </a>
     </div>
 
-    <div class="container" style="max-width: 850px;">
+    <div class="container product-page-shell" style="max-width: 900px;">
 
-        <!-- BACK BUTTON (Fixed missing quote and directed to categories) -->
-        <a href="{% url 'categories' %}" class="btn-back">
-            <i class="fa-solid fa-arrow-left me-1"></i> Back to Collection
+        <!-- BACK BUTTON -->
+        <a href="{% url 'category_page' %}" class="btn-back">
+            <i class="fa-solid fa-arrow-left"></i> Back to Categories
         </a>
 
-        <!-- TOP IMAGE CAROUSEL (< > SLIDER) -->
+        <!-- TOP IMAGE CAROUSEL SLIDER (SAFE CRASH-FREE RENDERING) -->
         <div id="productCarousel" class="carousel slide top-slider-box" data-bs-ride="carousel">
             <div class="carousel-inner">
 
-                <!-- Main Image -->
+                <!-- Main Product Image -->
                 {% if product.image %}
                 <div class="carousel-item active">
-                    {% if "http" in product.image|stringformat:"s" %}
-                        <img src="{{ product.image }}" alt="{{ product.name }}">
-                    {% else %}
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                    {% endif %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
                 </div>
                 {% endif %}
 
@@ -236,142 +326,294 @@
                     {% if img.image_url %}
                         <img src="{{ img.image_url }}" alt="{{ product.name }}">
                     {% elif img.image %}
-                        {% if "http" in img.image|stringformat:"s" %}
-                            <img src="{{ img.image }}" alt="{{ product.name }}">
-                        {% else %}
-                            <img src="{{ img.image.url }}" alt="{{ product.name }}">
-                        {% endif %}
+                        <img src="{{ img.image.url }}" alt="{{ product.name }}">
                     {% endif %}
                 </div>
                 {% endfor %}
 
-                <!-- Default Fallback Image -->
+                <!-- Fallback Default Image -->
                 {% if not product.image and not product.images.all %}
                 <div class="carousel-item active">
-                    <img src="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg" alt="Default Product">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80" alt="Default Product">
                 </div>
                 {% endif %}
 
             </div>
 
-            <!-- ARROWS CONTROL -->
+            <!-- CAROUSEL ARROWS -->
             {% if product.images.all %}
             <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
             </button>
-
             <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
             </button>
             {% endif %}
         </div>
 
         <!-- PRODUCT DETAILS SECTION -->
-        <div class="text-center mb-4">
-            <div class="purity-badge fw-semibold mb-2">
-                <i class="fa-solid fa-award me-1"></i> 22KT Gold Certified | BIS Hallmarked
+        <div class="text-center mb-5 product-details-panel">
+            <div class="product-eyebrow mb-2">GoldenAura signature piece</div>
+            
+            <!-- Certification & Specs Badges -->
+            <div class="d-flex flex-wrap justify-content-center gap-2 mb-3">
+                <span class="spec-badge">
+                    <i class="fa-solid fa-award text-warning"></i> BIS Hallmarked
+                </span>
+                <span class="spec-badge">
+                    <i class="fa-solid fa-coins text-warning"></i> {{ product.get_material_display|default:product.material|upper }}
+                </span>
+                <span class="spec-badge">
+                    <i class="fa-solid fa-gem text-info"></i> {{ product.get_karat_display|default:product.karat }}
+                </span>
+                {% if product.weight %}
+                <span class="spec-badge">
+                    <i class="fa-solid fa-scale-balanced text-warning"></i> Weight: {{ product.weight }} g
+                </span>
+                {% endif %}
             </div>
 
             <h2 class="royal-heading fw-bold mb-2">{{ product.name }}</h2>
-            <p class="text-muted small mb-3">{{ product.description }}</p>
+            <p class="text-muted small mb-3 px-md-5">{{ product.description }}</p>
             
-            <p class="price-tag fw-bold fs-2 mb-1" style="color: var(--purple-primary);">₹{{ product.price }}</p>
+            <h3 class="product-price fw-bold mb-4" style="color: var(--dark-gold);">₹{{ product.price }}</h3>
 
-            <!-- ACTION BUTTONS -->
-            <div class="d-flex justify-content-center gap-2 mb-4">
-                <a href="{% url 'add_to_cart' product.id %}" class="btn btn-purple-primary flex-grow-1" style="max-width: 300px;">
-                    <i class="fa-solid fa-bag-shopping me-1"></i> Add to cart
+            <!-- TANISHQ-STYLE COLLAPSIBLE ACCORDIONS -->
+            <div class="accordion tanishq-accordion text-start mx-auto mb-4" id="tanishqDetailsAccordion" style="max-width: 650px;">
+                
+                <!-- METAL DETAILS -->
+                <div class="accordion-item shadow-sm">
+                    <h2 class="accordion-header" id="headingMetal">
+                        <button class="accordion-button shadow-none py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMetal" aria-expanded="true" aria-controls="collapseMetal">
+                            <i class="fa-solid fa-coins text-warning me-2"></i> METAL DETAILS
+                        </button>
+                    </h2>
+                    <div id="collapseMetal" class="accordion-collapse collapse show" aria-labelledby="headingMetal" data-bs-parent="#tanishqDetailsAccordion">
+                        <div class="accordion-body bg-white py-3">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <span class="text-muted d-block small">Metal / Purity</span>
+                                    <strong class="text-dark small">{{ product.get_material_display|default:product.material|title }} ({{ product.get_karat_display|default:product.karat }})</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span class="text-muted d-block small">Metal Color</span>
+                                    <strong class="text-dark small">{{ product.metal_color|default:"Yellow Gold" }}</strong>
+                                </div>
+                                {% if product.weight %}
+                                <div class="col-6">
+                                    <span class="text-muted d-block small">Gross Weight</span>
+                                    <strong class="text-dark small">{{ product.weight }} g</strong>
+                                </div>
+                                {% endif %}
+                                <div class="col-6">
+                                    <span class="text-muted d-block small">Authenticity</span>
+                                    <strong class="text-dark small">BIS Hallmarked</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if product.diamond_carat %}
+                <!-- DIAMOND DETAILS -->
+                <div class="accordion-item shadow-sm">
+                    <h2 class="accordion-header" id="headingDiamond">
+                        <button class="accordion-button collapsed shadow-none py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDiamond" aria-expanded="false" aria-controls="collapseDiamond">
+                            <i class="fa-solid fa-gem text-info me-2"></i> DIAMOND DETAILS
+                        </button>
+                    </h2>
+                    <div id="collapseDiamond" class="accordion-collapse collapse" aria-labelledby="headingDiamond" data-bs-parent="#tanishqDetailsAccordion">
+                        <div class="accordion-body bg-white py-3">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <span class="text-muted d-block small">Total Weight</span>
+                                    <strong class="text-dark small">{{ product.diamond_carat }}</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span class="text-muted d-block small">Clarity / Color</span>
+                                    <strong class="text-dark small">VVS-VS / EF</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- GENERAL DETAILS -->
+                <div class="accordion-item shadow-sm">
+                    <h2 class="accordion-header" id="headingGeneral">
+                        <button class="accordion-button collapsed shadow-none py-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGeneral" aria-expanded="false" aria-controls="collapseGeneral">
+                            <i class="fa-solid fa-ring text-warning me-2"></i> GENERAL DETAILS
+                        </button>
+                    </h2>
+                    <div id="collapseGeneral" class="accordion-collapse collapse" aria-labelledby="headingGeneral" data-bs-parent="#tanishqDetailsAccordion">
+                        <div class="accordion-body bg-white py-3">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <span class="text-muted d-block small">Brand</span>
+                                    <strong class="text-dark small">GoldenAura 960</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span class="text-muted d-block small">Jewellery Type</span>
+                                    <strong class="text-dark small text-capitalize">{{ product.get_category_display|default:product.category }}</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span class="text-muted d-block small">Collection</span>
+                                    <strong class="text-dark small text-capitalize">{{ product.get_collection_display|default:product.collection|default:"Bestsellers" }}</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span class="text-muted d-block small">Gender</span>
+                                    <strong class="text-dark small text-capitalize">{{ product.get_gender_display|default:product.gender }}</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span class="text-muted d-block small">Occasion</span>
+                                    <strong class="text-dark small">{{ product.occasion|default:"Casual & Daily Wear" }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="accordion-item shadow-sm">
+                    
+                    <div id="collapseDesc" class="accordion-collapse collapse" aria-labelledby="headingDesc" data-bs-parent="#tanishqDetailsAccordion">
+                        <div class="accordion-body bg-white py-3">
+                            <p class="mb-0 text-secondary small">{{ product.description }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TRUST & ASSURANCE BADGES -->
+            <div class="row g-2 mb-4 text-center mx-auto" style="max-width: 650px;">
+                <div class="col-4">
+                    <div class="trust-card p-2 border rounded-3 shadow-sm" style="font-size: 0.72rem; border-color: var(--border-gold) !important;">
+                        <i class="fa-solid fa-shield-halved text-warning fs-6 mb-1 d-block"></i>
+                        <span class="fw-bold text-dark">100% Certified</span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="trust-card p-2 border rounded-3 shadow-sm" style="font-size: 0.72rem; border-color: var(--border-gold) !important;">
+                        <i class="fa-solid fa-truck-fast text-warning fs-6 mb-1 d-block"></i>
+                        <span class="fw-bold text-dark">Secure Shipping</span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="trust-card p-2 border rounded-3 shadow-sm" style="font-size: 0.72rem; border-color: var(--border-gold) !important;">
+                        <i class="fa-solid fa-rotate-left text-warning fs-6 mb-1 d-block"></i>
+                        <span class="fw-bold text-dark">Easy Returns</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DYNAMIC SIZES SELECTION CHECKBOXES / BUTTONS -->
+            {% if product.sizes.all %}
+            <div class="mb-4 text-center">
+                <label class="d-block small fw-bold text-uppercase text-muted mb-2" style="letter-spacing: 0.8px;">Available Sizes:</label>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    {% for sz in product.sizes.all %}
+                        <input type="radio" class="size-radio-btn" name="selected_size" id="size_{{ sz.id }}" value="{{ sz.name }}" {% if forloop.first %}checked{% endif %}>
+                        <label class="size-custom-label" for="size_{{ sz.id }}">
+                            {{ sz.name }}
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- ACTION BUTTONS (Add to Cart & Favorite) -->
+            <div class="buy-actions d-flex justify-content-center gap-2 mb-4">
+                <a href="{% url 'add_to_cart' product.id %}" class="btn btn-gold-primary flex-grow-1 shadow-sm" style="max-width: 280px;">
+                    <i class="fa-solid fa-bag-shopping me-2"></i> Add to Cart
                 </a>
 
                 {% if is_favorite %}
-                    <a href="{% url 'toggle_favorite' product.id %}" class="btn btn-danger">
-                        ❤️ Remove Favorite
+                    <a href="{% url 'toggle_favorite' product.id %}" class="btn btn-outline-danger px-4 rounded-3 d-flex align-items-center">
+                        <i class="fa-solid fa-heart me-1"></i> Saved
                     </a>
                 {% else %}
-                    <a href="{% url 'toggle_favorite' product.id %}" class="btn btn-outline-danger">
-                        ♡ Add to Favorites
+                    <a href="{% url 'toggle_favorite' product.id %}" class="btn btn-outline-secondary px-4 rounded-3 d-flex align-items-center bg-white">
+                        <i class="fa-regular fa-heart text-danger me-1"></i> Save
                     </a>
                 {% endif %}
             </div>
 
-            <!-- WRITE REVIEW BUTTON -->
-            <button type="button" id="reviewButton" class="w-100 max-w-md">⭐ Write a Customer Review</button>
+            <!-- WRITE REVIEW TOGGLE BUTTON -->
+            <button type="button" id="reviewToggleBtn" class="w-100" style="max-width: 320px;">
+                <i class="fa-regular fa-star me-1 text-warning"></i> Write a Customer Review
+            </button>
         </div>
 
         <!-- REVIEW FORM (HIDDEN BY DEFAULT) -->
-        <form id="reviewForm" method="POST" action="{% url 'add_review' product.id %}" style="display: none;">
+        <form id="reviewForm" method="POST" action="{% url 'add_review' product.id %}" class="review-box" style="display: none;">
             {% csrf_token %}
 
-            <h4 class="fw-bold mb-3" style="color: var(--purple-primary);">Write a Review</h4>
+            <h5 class="fw-bold mb-3 royal-heading">Share Your Experience</h5>
 
-            <label for="title" class="fw-semibold text-secondary d-block mb-1">Review Title</label>
-            <input type="text" name="title" id="title" placeholder="e.g. Excellent Craftsmanship!">
+            <label for="title" class="small fw-semibold text-secondary d-block mb-1">Review Title</label>
+            <input type="text" name="title" id="title" placeholder="e.g. Stunning craftsmanship & finish!" required>
 
-            <label class="fw-semibold text-secondary d-block mb-1">Your Rating</label>
+            <label class="small fw-semibold text-secondary d-block mb-1">Rating</label>
             <div class="rating d-flex">
-                <input type="radio" name="rating" value="5" id="star5" required>
-                <label for="star5" title="5 Stars">★</label>
-
-                <input type="radio" name="rating" value="4" id="star4">
-                <label for="star4" title="4 Stars">★</label>
-
-                <input type="radio" name="rating" value="3" id="star3">
-                <label for="star3" title="3 Stars">★</label>
-
-                <input type="radio" name="rating" value="2" id="star2">
-                <label for="star2" title="2 Stars">★</label>
-
-                <input type="radio" name="rating" value="1" id="star1">
-                <label for="star1" title="1 Star">★</label>
+                <input type="radio" name="rating" value="5" id="star5" required><label for="star5" title="5 Stars">★</label>
+                <input type="radio" name="rating" value="4" id="star4"><label for="star4" title="4 Stars">★</label>
+                <input type="radio" name="rating" value="3" id="star3"><label for="star3" title="3 Stars">★</label>
+                <input type="radio" name="rating" value="2" id="star2"><label for="star2" title="2 Stars">★</label>
+                <input type="radio" name="rating" value="1" id="star1"><label for="star1" title="1 Star">★</label>
             </div>
 
-            <label for="comment" class="fw-semibold text-secondary d-block mb-1">Your Review</label>
-            <textarea name="comment" id="comment" rows="4" placeholder="Share your experience with this item..."></textarea>
+            <label for="comment" class="small fw-semibold text-secondary d-block mb-1">Your Detailed Review</label>
+            <textarea name="comment" id="comment" rows="4" placeholder="Tell us about the quality, fitting, and shine..." required></textarea>
 
-            <button type="submit" class="btn btn-purple-primary w-100">Submit Review</button>
+            <button type="submit" class="btn btn-gold-primary w-100">Submit Review</button>
         </form>
 
-        <hr class="my-5" style="border-color: #e6d5a8;">
+        <hr class="my-5" style="border-color: #e8dcc4;">
 
         <!-- CUSTOMER REVIEWS LIST -->
         <div class="reviews-section">
-            <h4 class="fw-bold mb-3" style="color: var(--purple-primary);">Customer Reviews</h4>
+            <h5 class="fw-bold mb-4 royal-heading">Customer Reviews & Ratings</h5>
 
             {% for review in reviews %}
             <div class="review-card">
-                <h5 class="fw-bold mb-1">{{ review.title }}</h5>
-                <div class="text-warning mb-2" style="font-size: 1.2rem;">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <h6 class="fw-bold mb-0">{{ review.title }}</h6>
+                    <small class="text-muted">{{ review.created_at|date:"M d, Y" }}</small>
+                </div>
+                <div class="text-warning mb-2" style="font-size: 0.95rem;">
                     {% if review.rating >= 1 %}★{% endif %}
                     {% if review.rating >= 2 %}★{% endif %}
                     {% if review.rating >= 3 %}★{% endif %}
                     {% if review.rating >= 4 %}★{% endif %}
                     {% if review.rating >= 5 %}★{% endif %}
                 </div>
-                <p class="text-secondary mb-2">{{ review.comment }}</p>
-                <small class="text-muted">— Reviewed by <strong>{{ review.user.username }}</strong></small>
+                <p class="text-secondary small mb-2">{{ review.comment }}</p>
+                <small class="text-muted">— Verified Buyer <strong>{{ review.user.username }}</strong></small>
             </div>
             {% empty %}
-            <div class="p-3 text-center text-muted bg-white border rounded-3">
-                No reviews yet. Be the first to review this product!
+            <div class="p-4 text-center text-muted bg-white border rounded-4 shadow-sm">
+                <i class="fa-regular fa-comment-dots fs-3 text-secondary mb-2 opacity-50 d-block"></i>
+                <p class="small mb-0">No reviews yet for this product. Be the first to share your review!</p>
             </div>
             {% endfor %}
         </div>
 
     </div>
 
-    <!-- BOOTSTRAP JS FOR CAROUSEL SLIDER -->
+    <!-- BOOTSTRAP JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- JS FOR REVIEW TOGGLE -->
+    <!-- REVIEW FORM SLIDE TOGGLE SCRIPT -->
     <script>
-        const reviewButton = document.getElementById("reviewButton");
+        const reviewToggleBtn = document.getElementById("reviewToggleBtn");
         const reviewForm = document.getElementById("reviewForm");
 
-        reviewButton.addEventListener("click", function () {
+        reviewToggleBtn.addEventListener("click", function () {
             if (reviewForm.style.display === "none" || reviewForm.style.display === "") {
                 reviewForm.style.display = "block";
+                reviewForm.scrollIntoView({ behavior: 'smooth' });
             } else {
                 reviewForm.style.display = "none";
             }

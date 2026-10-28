@@ -6,7 +6,7 @@ from django.contrib.auth import logout
 from django.contrib.admin.views.decorators import staff_member_required
 from datetime import timedelta
 from django.utils import timezone
-
+from django.views.decorators.csrf import csrf_exempt
 from .models import Product, Wishlist
 from orders.models import Order, OrderItem, ReturnRequest
 from favorites.models import Favorite
@@ -126,50 +126,47 @@ def product_detail(request, pk):
 def category_page(request):
     collection_name = request.GET.get('collection')
     gender_name = request.GET.get('gender')
+    material_name = request.GET.get('material')
+    price_range = request.GET.get('price_range')
 
     products = Product.objects.all()
 
     if collection_name and collection_name != 'ALL':
-        products = products.filter(
-            collection__iexact=collection_name
-        )
+        products = products.filter(collection__iexact=collection_name)
 
     if gender_name:
         gender_name = gender_name.strip()
+        products = products.filter(gender__iexact=gender_name)
 
-        products = products.filter(
-            gender__iexact=gender_name
-        )
+    # Naya Filter: Material (gold, silver, diamond)
+    if material_name and material_name != 'all':
+        products = products.filter(material__iexact=material_name)
+
+    # Naya Filter: Price Range
+    if price_range:
+        try:
+            min_price, max_price = map(float, price_range.split('-'))
+            products = products.filter(price__gte=min_price, price__lte=max_price)
+        except ValueError:
+            pass
 
     user_wishlist_ids = []
-
     if request.user.is_authenticated:
         user_wishlist_ids = list(
-            Wishlist.objects.filter(
-                user=request.user
-            ).values_list(
-                'product_id',
-                flat=True
-            )
+            Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True)
         )
 
     context = {
         'products': products,
         'active_collection': collection_name,
         'active_gender': gender_name,
+        'active_material': material_name,
+        'active_price': price_range,
         'user_wishlist_ids': user_wishlist_ids,
     }
 
-    return render(
-        request,
-        'store/categories.html',
-        context
-    )
+    return render(request, 'store/categories.html', context)
 
-
-# =========================
-# TOGGLE WISHLIST
-# =========================
 @login_required
 def toggle_wishlist(request, product_id):
     product = get_object_or_404(
@@ -188,8 +185,13 @@ def toggle_wishlist(request, product_id):
     else:
         added = True
 
+    # Total wishlist count calculate karo user ke liye
+    wishlist_count = Wishlist.objects.filter(user=request.user).count()
+
     return JsonResponse({
-        'added': added
+        'status': 'success',
+        'added': added,
+        'wishlist_count': wishlist_count
     })
 
 
@@ -213,7 +215,6 @@ def wishlist_page(request):
         'store/wishlist.html',
         context
     )
-
 
 # =========================
 # DASHBOARD
@@ -663,3 +664,35 @@ def order_invoice(request, order_id):
 
     # Dono ke liye Single Uniform Template Path:
     return render(request, 'store/invoice.html', context)
+
+
+@csrf_exempt
+def return_request_view(request):
+    pass
+
+
+
+@login_required
+def cancel_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    
+    # Sirf tabhi cancel ho sake jab order pending ya processing ho (delivered hone ke baad nahi)
+    if order.status.lower() in ['pending', 'processing', 'gateway - pending']:
+        order.status = 'Cancelled'
+        order.save()
+        messages.success(request, f"Order #{order.id} successfully cancel ho gaya hai.")
+    else:
+        messages.error(request, "Yeh order ab cancel nahi kiya ja sakta.")
+        
+    return redirect('my_orders') 
+
+
+@login_required
+def dashboard_view(request):
+    # 🌟 Yahan ensure karo ki variable ka naam 'customer_orders' ho
+    customer_orders = Order.objects.filter(user=request.user).order_by('-created_at')
+    
+    context = {
+        'customer_orders': customer_orders,
+    }
+    return render(request, 'store/dashboard.html', context)

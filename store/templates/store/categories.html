@@ -1,369 +1,610 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GOLDENAURA 960 - Luxury Categories</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GOLDENAURA 960 - Categories</title>
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome 6 Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-<style>
-    * {
+    <style>
+      :root {
+        --mocha: #51382f;
+        --mocha-deep: #2e1d19;
+        --champagne: #d6b16d;
+        --champagne-light: #f4e8d0;
+        --amber: #b85c2a;
+        --cream: #fcf8f1;
+        --border-gold: #e8d7b9;
+        --bg-main: #f5eee5;
+        --text-dark: #30201b;
+        --text-muted: #826f65;
+      }
+
+      * {
         box-sizing: border-box;
-    }
+      }
 
-    body {
-        background: linear-gradient(135deg, #f4f0e6 0%, #ece5d8 50%, #f8f9fa 100%) !important;
-        color: #1a1a1a;
-        font-family: 'Poppins', sans-serif;
-        padding-bottom: 90px;
+      body {
+        background: radial-gradient(circle at 92% 0%, #ead5ad 0, transparent 27rem), var(--bg-main) !important;
+        color: var(--text-dark);
+        font-family: "Plus Jakarta Sans", sans-serif;
+        padding-bottom: 95px;
         margin: 0;
         min-height: 100vh;
-    }
+      }
 
-    .royal-font { 
-        font-family: 'Cinzel', serif; 
-    }
+      .royal-font {
+        font-family: "Cinzel", serif;
+        letter-spacing: 0.5px;
+      }
 
-    .category-page-container {
+      .category-page-container {
         display: flex;
         width: 100%;
         min-height: 100vh;
-    }
+      }
 
-    /* Fixed Sidebar so it doesn't jump or move */
-    .category-sidebar {
-        width: 110px !important;
-        min-width: 110px !important;
-        background-color: rgba(255, 255, 255, 0.98);
-        border-right: 1px solid #e2dacd;
+      /* PREMIUM SIDEBAR */
+      .category-sidebar {
+        width: 115px !important;
+        min-width: 115px !important;
+        background: rgba(46, 29, 25, 0.98);
+        backdrop-filter: blur(10px);
+        border-right: 1px solid rgba(214, 177, 109, 0.35);
         position: fixed;
         top: 0;
         left: 0;
         height: 100vh;
         overflow-y: auto;
-        padding: 15px 6px 100px 6px;
+        padding: 18px 8px 100px 8px;
         z-index: 100;
-    }
+        scrollbar-width: thin;
+      }
 
-    .category-item {
+      .category-item {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 10px 4px;
-        color: #555555;
+        padding: 12px 6px;
+        color: #f6ead8;
         text-decoration: none;
-        border-radius: 12px;
-        margin-bottom: 10px;
-        background-color: #ffffff;
-        border: 1px solid #e8e2d5;
-        font-size: 0.7rem;
-        text-align: center;
-        transition: all 0.25s ease;
-        width: 100%;
-    }
-
-    .category-item:hover,
-    .category-item.active {
-        color: #b89728;
-        background-color: #fff9e6;
-        border-color: #b89728;
-    }
-
-    .category-icon-box {
-        width: 36px;
-        height: 36px;
         border-radius: 10px;
+        margin-bottom: 12px;
+        background-color: transparent;
+        border: 1px solid rgba(244, 232, 208, 0.12);
+        font-size: 0.72rem;
+        font-weight: 500;
+        text-align: center;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        width: 100%;
+      }
+
+      .category-item:hover,
+      .category-item.active {
+        color: #fffaf2;
+        background: linear-gradient(135deg, var(--amber), #8f4020);
+        border-color: var(--champagne);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        transform: translateY(-3px);
+      }
+
+      .category-icon-box {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 4px;
-        background-color: #faf8f5;
-    }
+        margin-bottom: 6px;
+        background-color: rgba(244, 232, 208, 0.12);
+        color: var(--champagne);
+        transition: all 0.3s ease;
+      }
 
-    /* Content Area adjusted for fixed sidebar */
-    .products-content {
+      .category-item.active .category-icon-box {
+        background-color: rgba(255, 255, 255, 0.18);
+        color: #ffffff !important;
+      }
+
+      .category-item.active .category-icon-box i {
+        color: #ffffff !important;
+      }
+
+      /* MAIN CONTENT AREA */
+      .products-content {
         flex-grow: 1;
-        padding: 18px 15px;
-        margin-left: 110px;
-        width: calc(100% - 110px);
-    }
+        padding: 34px 34px 120px;
+        margin-left: 115px;
+        width: calc(100% - 115px);
+      }
 
-    .top-wishlist-link {
+      /* TOP WISHLIST LINK */
+      .top-wishlist-link {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-        color: #d4af37 !important;
-        padding: 6px 14px;
-        border-radius: 20px;
+        gap: 8px;
+        background: var(--mocha-deep);
+        color: var(--champagne-light) !important;
+        padding: 7px 16px;
+        border-radius: 30px;
         text-decoration: none;
-        font-size: 0.8rem;
+        font-size: 0.82rem;
         font-weight: 600;
-        border: 1px solid #d4af37;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-    }
+        border: 1px solid var(--champagne);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        transition: all 0.25s ease;
+      }
 
-    .top-wishlist-link i {
-        color: #e11d48;
-        font-size: 0.9rem;
-    }
+      .top-wishlist-link:hover {
+        background: var(--amber);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      }
 
-    .product-card {
-        background: #ffffff;
-        border: 1px solid #e6ded1;
+      /* FILTER BAR STYLING */
+      .filter-card {
+        background: rgba(255, 252, 247, 0.8);
+        border: 1px solid var(--border-gold);
         border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(81, 56, 47, 0.07);
+        backdrop-filter: blur(12px);
+      }
+
+      .pill-filter-btn {
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 6px 16px;
+        border-radius: 30px;
+        transition: all 0.25s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .pill-filter-btn.active {
+        background: var(--mocha) !important;
+        color: #ffffff !important;
+        border-color: var(--text-dark) !important;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .pill-filter-btn.inactive {
+        background: transparent;
+        color: var(--text-dark);
+        border: 1px solid #dbc8a9;
+      }
+
+      .pill-filter-btn.inactive:hover {
+        border-color: var(--amber);
+        color: var(--amber);
+        background-color: #fff8ed;
+      }
+
+      /* LUXURY PRODUCT CARD */
+      .product-card {
+        background: #fffdf9;
+        border: 1px solid rgba(214, 177, 109, 0.45);
+        border-radius: 14px;
         overflow: hidden;
         height: 100%;
         display: flex;
         flex-direction: column;
         position: relative;
-    }
+        transition: all 0.3s ease;
+      }
 
-    .product-img-wrapper {
+      .product-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 20px 35px rgba(81, 56, 47, 0.16);
+        border-color: var(--amber);
+      }
+
+      .product-img-wrapper {
         width: 100%;
-        height: 170px;
+        height: 185px;
         overflow: hidden;
         position: relative;
-        background-color: #f9f7f2;
-    }
+        background-color: var(--champagne-light);
+      }
 
-    .product-card img {
+      .product-card img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-    }
+        transition: transform 0.5s ease;
+      }
 
-    .product-info {
-        padding: 10px;
-        background: #ffffff;
-    }
+      .product-card:hover img {
+        transform: scale(1.06);
+      }
 
-    .wishlist-btn {
+      .wishlist-btn {
         position: absolute;
         top: 10px;
         right: 10px;
-        width: 34px;
-        height: 34px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.95);
-        border: 1px solid rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(220, 200, 160, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        z-index: 99;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
+        z-index: 10;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.25s ease;
+      }
 
-    .bottom-bar {
+      .wishlist-btn:hover {
+        transform: scale(1.1);
+        background: #ffffff;
+      }
+
+      .product-info {
+        padding: 12px 14px;
+        background: #fffdf9;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+      }
+
+      /* BOTTOM BAR */
+      .bottom-bar {
         position: fixed;
-        bottom: 12px;
+        bottom: 15px;
         left: 50%;
         transform: translateX(-50%);
-        width: 92%;
+        width: 90%;
         max-width: 420px;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(12px);
-        border: 1px solid #e0d8c8;
-        border-radius: 30px;
+        background: rgba(46, 29, 25, 0.96);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(214, 177, 109, 0.7);
+        border-radius: 35px;
         display: flex;
         justify-content: space-around;
         align-items: center;
-        padding: 8px 0;
+        padding: 10px 0;
         z-index: 1000;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      }
 
-    .nav-item-btn {
-        color: #666666;
+      .nav-item-btn {
+        color: #d9c4a7;
         text-decoration: none;
         text-align: center;
         font-size: 0.72rem;
-    }
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
 
-    .nav-item-btn.active, .nav-item-btn:hover {
-        color: #b89728;
-    }
-</style>
-</head>
+      .nav-item-btn.active,
+      .nav-item-btn:hover {
+        color: var(--champagne);
+        font-weight: 600;
+      }
 
-<body>
+      .text-warning { color: var(--champagne) !important; }
+      .badge.bg-warning { background-color: var(--champagne) !important; }
 
+      .page-title { color: var(--mocha-deep); font-size: clamp(1.1rem, 2vw, 1.45rem); }
+      .price-label { color: var(--amber); }
+
+      @media (max-width: 576px) {
+        .category-sidebar { width: 86px !important; min-width: 86px !important; padding: 12px 6px 95px; }
+        .products-content { margin-left: 86px; width: calc(100% - 86px); padding: 20px 12px 110px; }
+        .category-item { padding: 9px 3px; font-size: 0.62rem; margin-bottom: 8px; }
+        .category-icon-box { width: 32px; height: 32px; margin-bottom: 4px; }
+        .product-img-wrapper { height: 150px; }
+      }
+    </style>
+  </head>
+
+  <body>
     <div class="category-page-container">
-        
-        <!-- SIDEBAR CATEGORIES -->
-        <div class="category-sidebar">
-            <a href="?" class="category-item {% if not active_collection %}active{% endif %}">
-                <div class="category-icon-box"><i class="fa-solid fa-border-all fs-6 text-warning"></i></div>
-                <span class="fw-semibold">All Items</span>
-            </a>
-                    <a href="?collection=bridal" class="category-item {% if active_collection == 'bridal' %}active{% endif %}">
-            <div class="category-icon-box"><i class="fa-solid fa-crown fs-6 text-warning"></i></div>
-            <span class="fw-semibold">Bridal Wear</span>
-            </a>
-            <a href="?collection=daily" class="category-item {% if active_collection == 'daily' %}active{% endif %}">
-            <div class="category-icon-box"><i class="fa-solid fa-sun fs-6 text-warning"></i></div>
-            <span class="fw-semibold">Daily Wear</span>
-            </a>
-            <a href="?collection=party" class="category-item {% if active_collection == 'party' %}active{% endif %}">
-            <div class="category-icon-box"><i class="fa-solid fa-champagne-glasses fs-6 text-warning"></i></div>
-            <span class="fw-semibold">Party Wear</span>
-            </a>
-            <a href="?collection=office" class="category-item {% if active_collection == 'office' %}active{% endif %}">
-            <div class="category-icon-box"><i class="fa-solid fa-briefcase fs-6 text-warning"></i></div>
-            <span class="fw-semibold">Office Wear</span>
-            </a>
-            <a href="?collection=kids" class="category-item {% if active_collection == 'kids' %}active{% endif %}">
-            <div class="category-icon-box"><i class="fa-solid fa-child fs-6 text-warning"></i></div>
-            <span class="fw-semibold">Kids Wear</span>
-            </a>
-            <a href="?collection=daimond" class="category-item {% if active_collection == 'daimond' %}active{% endif %}">
-            <div class="category-icon-box"><i class="fa-solid fa-gem fs-6 text-warning"></i></div>
-            <span class="fw-semibold">Diamond</span>
-            </a>
-            <a href="?collection=festival" class="category-item {% if active_collection == 'festival' %}active{% endif %}">
-            <div class="category-icon-box"><i class="fa-solid fa-wand-magic-sparkles fs-6 text-warning"></i></div>
-            <span class="fw-semibold">Festival</span>
-            </a>
+      <!-- SIDEBAR NAVIGATION -->
+      <div class="category-sidebar">
+        <a href="?" class="category-item {% if not active_collection and not active_material %}active{% endif %}">
+          <div class="category-icon-box">
+            <i class="fa-solid fa-border-all fs-6 text-warning"></i>
+          </div>
+          <span>All Items</span>
+        </a>
+        <a href="?collection=bridal" class="category-item {% if active_collection == 'bridal' %}active{% endif %}">
+          <div class="category-icon-box">
+            <i class="fa-solid fa-crown fs-6 text-warning"></i>
+          </div>
+          <span>Bridal</span>
+        </a>
+        <a href="?collection=daily" class="category-item {% if active_collection == 'daily' %}active{% endif %}">
+          <div class="category-icon-box">
+            <i class="fa-solid fa-sun fs-6 text-warning"></i>
+          </div>
+          <span>Daily Wear</span>
+        </a>
+        <a href="?collection=party" class="category-item {% if active_collection == 'party' %}active{% endif %}">
+          <div class="category-icon-box">
+            <i class="fa-solid fa-champagne-glasses fs-6 text-warning"></i>
+          </div>
+          <span>Party Wear</span>
+        </a>
+        <a href="?collection=office" class="category-item {% if active_collection == 'office' %}active{% endif %}">
+          <div class="category-icon-box">
+            <i class="fa-solid fa-briefcase fs-6 text-warning"></i>
+          </div>
+          <span>Office Wear</span>
+        </a>
+        <a href="?collection=kids" class="category-item {% if active_collection == 'kids' %}active{% endif %}">
+          <div class="category-icon-box">
+            <i class="fa-solid fa-child fs-6 text-warning"></i>
+          </div>
+          <span>Kids Wear</span>
+        </a>
+        <a href="?collection=festival" class="category-item {% if active_collection == 'festival' %}active{% endif %}">
+          <div class="category-icon-box">
+            <i class="fa-solid fa-wand-magic-sparkles fs-6 text-warning"></i>
+          </div>
+          <span>Festival</span>
+        </a>
+      </div>
+
+      <!-- MAIN PRODUCTS CONTENT -->
+      <div class="products-content">
+        <!-- HEADER BAR -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <div class="text-uppercase small fw-bold mb-1" style="color: var(--amber); letter-spacing: 0.14em; font-size: 0.62rem">Fine jewellery</div>
+            <h5 class="page-title royal-font mb-0 fw-bold">
+            {% if active_collection %} {{ active_collection|title }} Collection
+            {% elif active_material %} {{ active_material|title }} Jewellery
+            {% else %} Curated Collections {% endif %}
+            </h5>
+          </div>
+
+          <a href="{% url 'wishlist_page' %}" class="top-wishlist-link">
+            <i class="fa-solid fa-heart text-danger"></i>
+            <span>Wishlist</span>
+            <span
+              class="badge bg-warning text-dark rounded-pill ms-1"
+              id="top-wishlist-count"
+              >{{ user_wishlist_ids|length }}</span
+            >
+          </a>
         </div>
 
-        <!-- MAIN PRODUCTS AREA -->
-        <div class="products-content">
-            
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h6 class="text-warning royal-font mb-0 fw-bold fs-6">
-                    {% if active_collection %}{{ active_collection }}{% else %}All Items{% endif %}
-                </h6>
-                
-                <a href="{% url 'wishlist_page' %}" class="top-wishlist-link">
-                    <i class="fa-solid fa-heart"></i>
-                    <span>Wishlist</span>
-                    <span class="badge bg-warning text-dark rounded-pill ms-1" id="top-wishlist-count">{{ user_wishlist_ids|length }}</span>
+        <!-- MATERIAL & PRICE FILTER CARD -->
+        <div class="filter-card p-3 mb-4">
+          <div class="row align-items-center g-3">
+            <!-- Material Filter Pills -->
+            <div class="col-lg-8 col-md-7">
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <span
+                  class="small fw-bold text-uppercase text-muted me-2"
+                  style="font-size: 0.7rem; letter-spacing: 0.8px"
+                  >Material:</span
+                >
+
+                <a
+                  href="?material=all{% if active_price %}&price_range={{ active_price }}{% endif %}"
+                  class="pill-filter-btn {% if not active_material or active_material == 'all' %}active{% else %}inactive{% endif %}"
+                >
+                  All
                 </a>
+                <a
+                  href="?material=gold{% if active_price %}&price_range={{ active_price }}{% endif %}"
+                  class="pill-filter-btn {% if active_material == 'gold' %}active{% else %}inactive{% endif %}"
+                >
+                  <i class="fa-solid fa-coins me-1 text-warning"></i> Gold
+                </a>
+                <a
+                  href="?material=silver{% if active_price %}&price_range={{ active_price }}{% endif %}"
+                  class="pill-filter-btn {% if active_material == 'silver' %}active{% else %}inactive{% endif %}"
+                >
+                  <i class="fa-solid fa-ring me-1 text-secondary"></i> Silver
+                </a>
+                <a
+                  href="?material=diamond{% if active_price %}&price_range={{ active_price }}{% endif %}"
+                  class="pill-filter-btn {% if active_material == 'diamond' %}active{% else %}inactive{% endif %}"
+                >
+                  <i class="fa-solid fa-gem me-1 text-info"></i> Diamond
+                </a>
+              </div>
             </div>
 
-            <!-- PRODUCT GRID -->
-            <div class="row g-2">
-                {% for product in products %}
-                <div class="col-6 col-md-4">
-                    <div class="product-card">
-                        
-                        <div class="wishlist-btn" onclick="toggleWishlist(event, this, '{{ product.id|default:product.pk }}')">
-                            {% if product.id in user_wishlist_ids or product.pk in user_wishlist_ids %}
-                                <i class="fa-solid fa-heart" style="color: #e11d48;"></i>
-                            {% else %}
-                                <i class="fa-regular fa-heart" style="color: #6b7280;"></i>
-                            {% endif %}
-                        </div>
-
-                        <a href="{% url 'product_detail' product.id|default:product.pk %}" class="text-decoration-none text-dark d-flex flex-column h-100">
-                            <div class="product-img-wrapper">
-                                {% if product.image %}
-                                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                                {% else %}
-                                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80" alt="Product">
-                                {% endif %}
-                            </div>
-
-                            <div class="product-info">
-                                <div class="fw-semibold text-truncate small">{{ product.name }}</div>
-                                <div class="text-warning fw-bold mt-1">₹{{ product.price }}</div>
-                            </div>
-                        </a>
-
-                    </div>
-                </div>
-                {% empty %}
-                <div class="col-12 text-center py-5">
-                    <i class="fa-solid fa-box-open fs-1 text-secondary mb-2"></i>
-                    <p class="text-muted small">Is category me abhi koi products available nahi hain.</p>
-                </div>
-                {% endfor %}
+            <!-- Price Filter Dropdown -->
+            <div class="col-lg-4 col-md-5 text-md-end">
+              <form method="GET" action="" class="d-inline-block w-100">
+                {% if active_material %}
+                <input type="hidden" name="material" value="{{ active_material }}" />
+                {% endif %} 
+                {% if active_collection %}
+                <input type="hidden" name="collection" value="{{ active_collection }}" />
+                {% endif %}
+                <select
+                  name="price_range"
+                  class="form-select form-select-sm rounded-pill px-3 py-2 shadow-none border"
+                  style="font-size: 0.78rem; border-color: var(--champagne) !important; background-color: #fffaf3; color: var(--mocha);"
+                  onchange="this.form.submit()"
+                >
+                  <option value="">Filter by Price (All Collections)</option>
+                  <option value="0-10000" {% if active_price == "0-10000" %}selected{% endif %}>Under ₹10,000</option>
+                  <option value="10000-20000" {% if active_price == "10000-20000" %}selected{% endif %}>₹10,000 - ₹20,000</option>
+                  <option value="20000-35000" {% if active_price == "20000-35000" %}selected{% endif %}>₹20,000 - ₹35,000</option>
+                  <option value="35000-50000" {% if active_price == "35000-50000" %}selected{% endif %}>₹35,000 - ₹50,000</option>
+                </select>
+              </form>
             </div>
+          </div>
         </div>
 
+        <!-- PRODUCT GRID SECTION -->
+        <div class="row g-3">
+          {% for product in products %}
+          <div class="col-6 col-md-4 col-lg-3">
+            <div class="product-card">
+              <!-- Wishlist Toggle Button -->
+              <div
+                class="wishlist-btn"
+                onclick="toggleWishlist(event, this, '{{ product.id|default:product.pk }}')"
+              >
+                {% if product.id in user_wishlist_ids or product.pk in user_wishlist_ids %}
+                <i class="fa-solid fa-heart" style="color: #e11d48; font-size: 1rem"></i>
+                {% else %}
+                <i class="fa-regular fa-heart" style="color: #6b7280; font-size: 1rem"></i>
+                {% endif %}
+              </div>
+
+              <!-- Product Link -->
+              <a
+                href="{% url 'product_detail' product.id|default:product.pk %}"
+                class="text-decoration-none text-dark d-flex flex-column h-100"
+              >
+                <div class="product-img-wrapper">
+                  {% if product.image %}
+                  <img
+                    src="{{ product.image.url }}"
+                    alt="{{ product.name }}"
+                    loading="lazy"
+                  />
+                  {% else %}
+                  <img
+                    src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=500&q=80"
+                    alt="Product Placeholder"
+                  />
+                  {% endif %}
+                </div>
+
+                <div class="product-info">
+                  <div>
+                    <div
+                      class="fw-bold text-truncate small"
+                      style="letter-spacing: 0.2px"
+                    >
+                      {{ product.name }}
+                    </div>
+                    <span
+                      class="badge bg-light text-dark border mt-1"
+                      style="font-size: 0.65rem"
+                    >
+                      {{ product.get_karat_display|default:product.karat|default:"22K" }}
+                    </span>
+                  </div>
+                  <div class="text-warning fw-bold mt-2 fs-6">
+                    ₹{{ product.price }}
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% empty %}
+          <!-- Empty State -->
+          <div class="col-12 text-center py-5">
+            <div
+              class="p-4 bg-white rounded-4 border d-inline-block shadow-sm"
+              style="max-width: 380px"
+            >
+              <i class="fa-solid fa-gem fs-1 text-muted mb-3 opacity-50"></i>
+              <h6 class="fw-bold mb-1">No Jewellery Found</h6>
+              <p class="text-muted small mb-0">
+                Is selection me abhi koi products available nahi hain. Try changing filters.
+              </p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
 
-    <!-- BOTTOM NAVIGATION BAR -->
+    <!-- BOTTOM MOBILE NAVIGATION BAR -->
     <div class="bottom-bar">
-        <a href="{% url 'home' %}" class="nav-item-btn">
-            <i class="fa-solid fa-house fs-5 d-block"></i>Home
-        </a>
-        <a href="{% url 'category_page' %}" class="nav-item-btn active">
-            <i class="fa-solid fa-border-all fs-5 d-block"></i>Categories
-        </a>
-        <a href="{% url 'cart' %}" class="nav-item-btn">
-            <i class="fa-solid fa-bag-shopping fs-5 d-block"></i>Cart
-        </a>
-        <a href="/profile/" class="nav-item-btn">
-            <i class="fa-solid fa-user fs-5 d-block"></i>Profile
-        </a>
+      <a href="{% url 'home' %}" class="nav-item-btn">
+        <i class="fa-solid fa-house fs-5 d-block mb-1"></i>Home
+      </a>
+      <a href="{% url 'category_page' %}" class="nav-item-btn active">
+        <i class="fa-solid fa-border-all fs-5 d-block mb-1"></i>Categories
+      </a>
+      <a href="{% url 'cart' %}" class="nav-item-btn">
+        <i class="fa-solid fa-bag-shopping fs-5 d-block mb-1"></i>Cart
+      </a>
+      <a href="/profile/" class="nav-item-btn">
+        <i class="fa-solid fa-user fs-5 d-block mb-1"></i>Profile
+      </a>
     </div>
 
+    <!-- WISHLIST INTERACTION SCRIPT -->
     <script>
-        function toggleWishlist(event, btnElement, productId) {
-            if (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-
-            const icon = btnElement.querySelector('i');
-            const countBadge = document.getElementById('top-wishlist-count');
-            const isRed = icon.classList.contains('fa-solid');
-
-            if (isRed) {
-                icon.className = 'fa-regular fa-heart';
-                icon.style.color = '#6b7280';
-                if (countBadge && countBadge.innerText) {
-                    let currentVal = parseInt(countBadge.innerText) || 0;
-                    countBadge.innerText = Math.max(0, currentVal - 1);
-                }
-            } else {
-                icon.className = 'fa-solid fa-heart';
-                icon.style.color = '#e11d48';
-                if (countBadge && countBadge.innerText) {
-                    let currentVal = parseInt(countBadge.innerText) || 0;
-                    countBadge.innerText = currentVal + 1;
-                }
-            }
-
-            fetch(`/wishlist/toggle/${productId}/`, {
-                method: 'POST',
-                    headers: {
-                    'X-CSRFToken': getCookie('csrftoken'),
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => {
-                if (res.status === 401 || res.status === 403) {
-                    window.location.href = '/accounts/login/';
-                }
-                return res.json();
-            });
+      function toggleWishlist(event, btnElement, productId) {
+        if (event) {
+          event.preventDefault();
+          event.stopPropagation();
         }
 
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
+        const icon = btnElement.querySelector("i");
+        const countBadge = document.getElementById("top-wishlist-count");
+        const isRed = icon.classList.contains("fa-solid");
+
+        if (isRed) {
+          icon.className = "fa-regular fa-heart";
+          icon.style.color = "#6b7280";
+          if (countBadge && countBadge.innerText) {
+            let currentVal = parseInt(countBadge.innerText) || 0;
+            countBadge.innerText = Math.max(0, currentVal - 1);
+          }
+        } else {
+          icon.className = "fa-solid fa-heart";
+          icon.style.color = "#e11d48";
+          if (countBadge && countBadge.innerText) {
+            let currentVal = parseInt(countBadge.innerText) || 0;
+            countBadge.innerText = currentVal + 1;
+          }
         }
+
+        fetch(`/wishlist/toggle/${productId}/`, {
+          method: "POST",
+          headers: {
+            "X-CSRFToken": getCookie("csrftoken"),
+            "Content-Type": "application/json",
+          },
+        }).then((res) => {
+          if (res.status === 401 || res.status === 403) {
+            window.location.href = "/accounts/login/";
+          }
+          return res.json();
+        });
+      }
+
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          const cookies = document.cookie.split(";");
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      }
     </script>
-</body>
+  </body>
 </html>

@@ -18,6 +18,7 @@ urlpatterns = [
     path('return/refund/<int:return_id>/',views.refund_details,name='refund_details'),
     path('return/manage/<int:return_id>/',views.manage_return_request,name='manage_return_request'),
     path('returns/',views.returns_view,name='return_requests'),
+    path('order/cancel/<int:order_id>/', views.cancel_order, name='cancel_order'),
     
     # Order Status Update Path (Admin Dashboard)
     path('admin-dashboard/update-status/<int:pk>/', views.update_order_status, name='update_order_status'),

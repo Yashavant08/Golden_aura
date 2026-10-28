@@ -12,16 +12,20 @@
 
     <style>
         :root {
-            --gold-primary: #C59B27;
-            --gold-dark: #9A7B1C;
-            --gold-light: #F7E7A9;
-            --bg-light: #FAF8F5;
-            --text-dark: #1A1A1A;
-            --text-muted: #666666;
+            /* 🌟 Exact Reel Luxury Color Palette */
+            --mocha-brown: #5b4632;
+            --mocha-dark: #3b2c20;
+            --champagne-gold: #f4d9a0;
+            --burnt-amber: #cb873c;
+            --bg-ivory: #f7f1e8;
+            --card-bg: #ffffff;
+            --text-dark: #281816;
+            --text-muted: #6b5b4d;
+            --border-warm: #e6dec5;
         }
 
         body {
-            background-color: var(--bg-light);
+            background-color: var(--bg-ivory);
             font-family: 'Plus Jakarta Sans', sans-serif;
             color: var(--text-dark);
             min-height: 100vh;
@@ -37,24 +41,24 @@
         }
 
         .gold-text {
-            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 50%, #996515 100%);
+            background: linear-gradient(135deg, var(--burnt-amber) 0%, var(--mocha-brown) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .split-card {
-            background: #ffffff;
+            background: var(--card-bg);
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08), 0 0 20px rgba(197, 155, 39, 0.15);
-            border: 1px solid rgba(212, 175, 55, 0.25);
+            box-shadow: 0 25px 50px rgba(91, 70, 50, 0.12), 0 0 25px rgba(203, 135, 60, 0.15);
+            border: 1px solid var(--border-warm);
             width: 100%;
             max-width: 950px;
         }
 
         .banner-side {
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.75) 100%),
+            background: linear-gradient(180deg, rgba(59, 44, 32, 0.35) 0%, rgba(37, 27, 19, 0.88) 100%),
                         url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=1000&auto=format&fit=crop') center center / cover no-repeat;
             display: flex;
             flex-direction: column;
@@ -65,8 +69,8 @@
 
         .banner-overlay-text {
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(244, 217, 160, 0.15);
+            border: 1px solid rgba(244, 217, 160, 0.35);
             border-radius: 16px;
             padding: 22px;
         }
@@ -76,11 +80,12 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            background-color: #ffffff;
         }
 
         .form-control {
-            background-color: #FAF8F5;
-            border: 1.5px solid #EAE5DC;
+            background-color: var(--bg-ivory);
+            border: 1.5px solid var(--border-warm);
             border-radius: 10px;
             padding: 12px 16px;
             font-size: 0.9rem;
@@ -90,20 +95,20 @@
 
         .form-control:focus {
             background-color: #ffffff;
-            border-color: var(--gold-primary);
-            box-shadow: 0 0 0 4px rgba(197, 155, 39, 0.15);
+            border-color: var(--burnt-amber);
+            box-shadow: 0 0 0 4px rgba(203, 135, 60, 0.18);
         }
 
         label {
             font-size: 0.8rem;
-            font-weight: 600;
-            color: #444444;
+            font-weight: 700;
+            color: var(--mocha-brown);
             margin-bottom: 6px;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
         }
 
         .btn-gold {
-            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            background: linear-gradient(135deg, var(--burnt-amber) 0%, var(--mocha-brown) 100%);
             color: #ffffff;
             font-weight: 600;
             border: none;
@@ -113,39 +118,39 @@
             font-size: 0.95rem;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 18px rgba(184, 134, 11, 0.25);
+            box-shadow: 0 6px 18px rgba(203, 135, 60, 0.28);
         }
 
         .btn-gold:hover {
-            background: linear-gradient(135deg, #E5C158 0%, #D4AF37 100%);
-            box-shadow: 0 8px 22px rgba(184, 134, 11, 0.35);
-            color: #ffffff;
+            background: linear-gradient(135deg, var(--mocha-brown) 0%, var(--mocha-dark) 100%);
+            box-shadow: 0 8px 22px rgba(91, 70, 50, 0.35);
+            color: var(--champagne-gold);
             transform: translateY(-1px);
         }
 
         .gold-link {
-            color: var(--gold-dark);
+            color: var(--burnt-amber);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             transition: color 0.2s;
         }
 
         .gold-link:hover {
-            color: var(--gold-primary);
+            color: var(--mocha-brown);
             text-decoration: underline;
         }
 
         .forgot-password-link {
-            color: #666666;
+            color: var(--text-muted);
             font-size: 13px;
             text-decoration: none;
             transition: all 0.3s ease;
             display: inline-block;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .forgot-password-link:hover {
-            color: #b58d3d;
+            color: var(--burnt-amber);
             text-decoration: underline;
         }
 
@@ -167,20 +172,20 @@
             <!-- Left Banner Side -->
             <div class="col-md-5 banner-side">
                 <div>
-                    <span class="badge bg-white text-dark rounded-pill px-3 py-2 fw-medium royal-font shadow-sm">
-                        <i class="fa-solid fa-gem gold-text me-1"></i> GoldenAura
+                    <span class="badge bg-white text-dark rounded-pill px-3 py-2 fw-medium royal-font shadow-sm" style="border: 1px solid var(--border-warm);">
+                        <i class="fa-solid fa-gem me-1" style="color: var(--burnt-amber);"></i> GoldenAura
                     </span>
                 </div>
                 <div class="banner-overlay-text">
-                    <h4 class="royal-font text-white mb-2 fw-bold">Welcome Back</h4>
-                    <p class="small text-white-50 mb-0">Sign in to explore our exquisite handcrafted jewellery collection.</p>
+                    <h4 class="royal-font mb-2 fw-bold" style="color: var(--champagne-gold);">Welcome Back</h4>
+                    <p class="small mb-0" style="color: #f7f1e8;">Sign in to explore our exquisite handcrafted jewellery collection.</p>
                 </div>
             </div>
 
             <!-- Right Form Side -->
             <div class="col-md-7 form-side">
                 <div class="d-flex align-items-center mb-3">
-                    <div class="me-2 text-warning fs-3"><i class="fa-solid fa-gem"></i></div>
+                    <div class="me-2 fs-3" style="color: var(--burnt-amber);"><i class="fa-solid fa-gem"></i></div>
                     <div>
                         <h3 class="royal-font gold-text fw-bold mb-0">Member Sign In</h3>
                         <p class="text-muted small mb-0">Enter your credentials to access your account</p>
@@ -216,7 +221,6 @@
                     <div class="mb-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <label>PASSWORD</label>
-                            <!-- Password field ke theek bagal mein ya niche clean look ke liye -->
                             <a href="{% url 'forgot_password' %}" class="forgot-password-link mb-1">Forgot Password?</a>
                         </div>
                         <input type="password" name="password" class="form-control" placeholder="••••••••" required>

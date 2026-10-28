@@ -8,31 +8,45 @@
     <title>My Wishlist - GOLDENAURA 960</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --mocha-brown: #5b4632;
+            --mocha-dark: #3b2c20;
+            --champagne-gold: #f4d9a0;
+            --burnt-amber: #cb873c;
+            --bg-ivory: #f7f1e8;
+            --card-bg: #ffffff;
+            --text-dark: #281816;
+            --text-muted: #6b5b4d;
+            --border-warm: #e6dec5;
+        }
+
         body {
-            background: linear-gradient(135deg, #f4f0e6 0%, #ece5d8 50%, #f8f9fa 100%) !important;
+            background: radial-gradient(ellipse 42rem 29rem at 100% 0%, rgba(214,177,109,.42), transparent 70%), radial-gradient(ellipse 28rem 24rem at 0% 55%, rgba(184,92,42,.10), transparent 72%), repeating-linear-gradient(115deg, rgba(81,56,47,.018) 0 1px, transparent 1px 10px), linear-gradient(135deg, #fffaf3, var(--bg-ivory) 52%, #ead9c5) !important;
             font-family: 'Poppins', sans-serif;
             padding-bottom: 90px;
             min-height: 100vh;
+            color: var(--text-dark);
         }
 
-        .royal-font { font-family: 'Cinzel', serif; color: #2c2c2c; }
+        .royal-font { font-family: 'Cinzel', serif; color: var(--mocha-dark); }
 
         .product-card {
-            background: #ffffff;
-            border: 1px solid #e6ded1;
-            border-radius: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-warm);
+            border-radius: 18px;
             overflow: hidden;
             transition: all 0.3s ease;
             position: relative;
+            box-shadow: 0 6px 20px rgba(91, 70, 50, 0.04);
         }
 
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(184, 151, 40, 0.15);
-            border-color: #d4af37;
+            box-shadow: 0 18px 36px rgba(91, 70, 50, 0.14);
+            border-color: var(--burnt-amber);
         }
 
         .product-img-wrapper {
@@ -40,13 +54,18 @@
             height: 220px;
             overflow: hidden;
             position: relative;
-            background-color: #f9f7f2;
+            background-color: var(--bg-ivory);
         }
 
         .product-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.06);
         }
 
         .remove-wishlist-btn {
@@ -65,6 +84,12 @@
             cursor: pointer;
             z-index: 10;
             box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+            transition: all 0.2s ease;
+        }
+
+        .remove-wishlist-btn:hover {
+            background: #e11d48;
+            color: #ffffff;
         }
 
         .bottom-bar {
@@ -74,67 +99,77 @@
             transform: translateX(-50%);
             width: 90%;
             max-width: 420px;
-            background: rgba(255, 255, 255, 0.94);
+            background: rgba(46,29,25,.96);
             backdrop-filter: blur(12px);
-            border: 1px solid #e0d8c8;
+            border: 1px solid rgba(214,177,109,.7);
             border-radius: 30px;
             display: flex;
             justify-content: space-around;
             align-items: center;
             padding: 10px 0;
             z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
         .nav-item-btn {
-            color: #777777;
+            color: #ddc8a9;
             text-decoration: none;
             text-align: center;
             font-size: 0.75rem;
         }
 
-        .nav-item-btn.active { color: #b89728; }
+        .nav-item-btn.active { color: var(--champagne-gold); }
+        .wishlist-heading { background: linear-gradient(115deg, rgba(255,253,249,.92), rgba(244,232,208,.76)); border: 1px solid var(--border-warm); border-radius: 20px; padding: 20px 22px; box-shadow: 0 12px 28px rgba(91,56,47,.07); }
+        .wishlist-eyebrow { color: var(--burnt-amber); font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+        .text-warning { color: var(--burnt-amber) !important; }
     </style>
 </head>
 
 <body>
 
     <div class="container pt-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="royal-font fw-bold mb-0"><i class="fa-solid fa-heart text-danger me-2"></i>My Wishlist</h4>
-            <span class="badge bg-dark text-warning border border-warning px-3 py-2 fs-6">{{ wishlist_items|length }} Items</span>
+        <div class="wishlist-heading d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <div class="wishlist-eyebrow mb-1">Saved for your next celebration</div>
+                <h4 class="royal-font fw-bold mb-0"><i class="fa-solid fa-heart text-danger me-2"></i>My Wishlist</h4>
+            </div>
+            <span class="badge bg-dark text-warning border border-warning px-3 py-2 fs-6" id="wishlist-counter">{{ wishlist_items|length }} Items</span>
         </div>
 
-        <div class="row g-3">
+        <div class="row g-3" id="wishlist-grid">
             {% for item in wishlist_items %}
             <div class="col-6 col-md-4 col-lg-3" id="wishlist-item-{{ item.product.id }}">
-                <div class="product-card">
+                <div class="product-card h-100 d-flex flex-column">
                     <!-- Remove Button -->
-                    <button type="button" class="remove-wishlist-btn" onclick="removeFromWishlist('{{ item.product.id }}')">
+                    <button type="button" class="remove-wishlist-btn" onclick="removeFromWishlist('{{ item.product.id }}')" title="Remove from Wishlist">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>
 
-                    <a href="{% url 'product_detail' item.product.id %}" class="text-decoration-none text-dark">
+                    <a href="{% url 'product_detail' item.product.id %}" class="text-decoration-none text-dark flex-grow-1">
                         <div class="product-img-wrapper">
                             {% if item.product.image %}
-                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                {% if "http" in item.product.image|stringformat:"s" %}
+                                    <img src="{{ item.product.image }}" alt="{{ item.product.name }}">
+                                {% else %}
+                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                {% endif %}
                             {% else %}
                                 <img src="https://images.pexels.com/photos/1457801/pexels-photo-1457801.jpeg" alt="Product">
                             {% endif %}
                         </div>
 
                         <div class="p-3">
-                            <div class="fw-bold fs-6 text-truncate">{{ item.product.name }}</div>
+                            <div class="fw-bold fs-6 text-truncate text-dark">{{ item.product.name }}</div>
                             <div class="text-warning fw-bold fs-5 mt-1">₹{{ item.product.price }}</div>
                         </div>
                     </a>
                 </div>
             </div>
             {% empty %}
-            <div class="col-12 text-center py-5">
+            <div class="col-12 text-center py-5" id="empty-wishlist-msg">
                 <i class="fa-regular fa-heart fs-1 text-secondary mb-3 d-block"></i>
                 <h5 class="text-muted">Aapki Wishlist abhi khali hai!</h5>
-                <a href="{% url 'category_page' %}" class="btn btn-warning rounded-pill mt-3 px-4 fw-semibold text-dark">Explore Products</a>
+                <a href="{% url 'product_list' %}" class="btn btn-warning rounded-pill mt-3 px-4 fw-semibold text-dark">Explore Products</a>
             </div>
             {% endfor %}
         </div>
@@ -145,7 +180,7 @@
         <a href="{% url 'home' %}" class="nav-item-btn">
             <i class="fa-solid fa-house fs-5 d-block"></i>Home
         </a>
-        <a href="{% url 'category_page' %}" class="nav-item-btn">
+        <a href="{% url 'product_list' %}" class="nav-item-btn">
             <i class="fa-solid fa-border-all fs-5 d-block"></i>Categories
         </a>
         <a href="{% url 'wishlist_page' %}" class="nav-item-btn active">
@@ -157,6 +192,7 @@
     </div>
 
     <script>
+        // Remove item from Wishlist
         function removeFromWishlist(productId) {
             fetch(`/wishlist/toggle/${productId}/`, {
                 method: 'POST',
@@ -167,11 +203,35 @@
             })
             .then(res => res.json())
             .then(data => {
-                if(data.status === 'success') {
-                    const el = document.getElementById(`wishlist-item-${productId}`);
-                    if(el) el.remove();
+                const el = document.getElementById(`wishlist-item-${productId}`);
+                if(el) {
+                    el.remove();
+                    updateCounter();
                 }
+            })
+            .catch(err => {
+                const el = document.getElementById(`wishlist-item-${productId}`);
+                if(el) { el.remove(); updateCounter(); }
             });
+        }
+
+        // Update item count badge dynamically
+        function updateCounter() {
+            const grid = document.getElementById('wishlist-grid');
+            const items = grid.querySelectorAll('.col-6, .col-md-4');
+            const counterBadge = document.getElementById('wishlist-counter');
+            if(counterBadge) {
+                counterBadge.innerText = `${items.length} Items`;
+            }
+            if(items.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="fa-regular fa-heart fs-1 text-secondary mb-3 d-block"></i>
+                        <h5 class="text-muted">Aapki Wishlist abhi khali hai!</h5>
+                        <a href="{% url 'product_list' %}" class="btn btn-warning rounded-pill mt-3 px-4 fw-semibold text-dark">Explore Products</a>
+                    </div>
+                `;
+            }
         }
 
         function getCookie(name) {

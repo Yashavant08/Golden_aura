@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,44 +12,91 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    {% load static %}
-    <link href="{% static 'store/style.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --purple-primary: #4B2067;
-            --purple-dark: #36154C;
-            --gold-accent: #D4AF37;
-            --bg-light: #FAF9F6;
+            --mocha-brown: #5b4632;
+            --mocha-dark: #3b2c20;
+            --champagne-gold: #f4d9a0;
+            --burnt-amber: #cb873c;
+            --bg-ivory: #f7f1e8;
+            --card-bg: #ffffff;
+            --text-dark: #281816;
+            --text-muted: #6b5b4d;
+            --border-warm: #e6dec5;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             padding-bottom: 60px;
+            color: var(--text-dark);
+            background-color: var(--bg-ivory) !important;
+            min-height: 100vh;
         }
 
         .royal-heading {
             font-family: 'Cinzel', serif;
-            color: var(--purple-primary);
+            color: var(--mocha-brown);
             letter-spacing: 1px;
         }
 
-        /* Clean Single Navbar */
+        /* Clean Navbar */
         .navbar-custom {
-            background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 5px 22px rgba(91, 70, 50, 0.08);
+            border-bottom: 1px solid var(--border-warm);
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
+        .navbar-brand {
+            font-family: 'Cinzel', serif;
+            color: var(--text-dark) !important;
+            letter-spacing: 1px;
+        }
+
+        /* Material Filter Bar */
+        .filter-card {
+            background: #ffffff;
+            border-radius: 18px;
+            border: 1.5px solid var(--border-warm);
+            padding: 18px 24px;
+            box-shadow: 0 10px 25px rgba(91, 70, 50, 0.05);
+        }
+
+        .btn-filter-pill {
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 7px 18px;
+            border-radius: 20px;
+            border: 1.5px solid var(--border-warm);
+            color: var(--mocha-brown);
+            background: var(--bg-ivory);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-filter-pill:hover, .btn-filter-pill.active {
+            background: linear-gradient(135deg, var(--burnt-amber) 0%, var(--mocha-brown) 100%);
+            color: #ffffff !important;
+            border-color: var(--burnt-amber);
+            box-shadow: 0 4px 12px rgba(203, 135, 60, 0.25);
+        }
+
+        .btn-filter-pill.active i {
+            color: var(--champagne-gold) !important;
+        }
+
         /* Product Card Styling */
         .card {
-            border: 1px solid #eaeaea;
-            border-radius: 16px;
+            border: 1px solid var(--border-warm);
+            border-radius: 20px;
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             background: #ffffff;
@@ -57,13 +105,13 @@
 
         .card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 14px 28px rgba(75, 32, 103, 0.15);
-            border-color: var(--gold-accent);
+            box-shadow: 0 20px 38px rgba(91, 70, 50, 0.15);
+            border-color: var(--burnt-amber);
         }
 
         .card-img-wrapper {
             height: 260px;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #ffffff, var(--bg-ivory));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -89,15 +137,16 @@
         }
 
         .card-title {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #222;
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-dark);
             margin-bottom: 8px;
         }
 
         .card-text {
             font-size: 0.88rem;
-            color: #666;
+            color: var(--text-muted);
             margin-bottom: 12px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -108,23 +157,24 @@
 
         .price-tag {
             font-size: 1.3rem;
-            color: var(--purple-primary);
+            font-family: 'Cinzel', serif;
+            color: var(--burnt-amber);
             margin-bottom: 4px;
         }
 
         .badge-hallmark {
-            background-color: #fff8e7;
-            color: #8a6d3b;
-            border: 1px solid var(--gold-accent);
+            background-color: var(--bg-ivory);
+            color: var(--mocha-brown);
+            border: 1px solid var(--border-warm);
             font-size: 0.75rem;
-            padding: 4px 8px;
+            padding: 4px 10px;
             border-radius: 12px;
             display: inline-block;
             margin-bottom: 10px;
             width: fit-content;
         }
 
-        /* WISHLIST BUTTON STYLING */
+        /* Wishlist Button */
         .wishlist-btn {
             position: absolute;
             top: 12px;
@@ -134,58 +184,119 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(4px);
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-warm);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 10;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 4px 10px rgba(91, 70, 50, 0.12);
         }
 
         .wishlist-btn i {
-            color: #6b7280;
+            color: var(--text-muted);
             font-size: 1.1rem;
             transition: all 0.3s ease;
         }
 
         .wishlist-btn.active i {
-            color: #e11d48; /* Red Heart */
+            color: #be123c;
         }
 
         .wishlist-btn:hover {
             transform: scale(1.12);
             background: #ffffff;
         }
+
+        .collection-eyebrow {
+            color: var(--burnt-amber);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .collection-intro {
+            position: relative;
+            overflow: hidden;
+            padding: 38px 30px;
+            border: 1px solid var(--border-warm);
+            border-radius: 22px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--bg-ivory) 100%);
+            box-shadow: 0 15px 35px rgba(91, 70, 50, 0.08);
+        }
+
+        .collection-intro::after {
+            content: 'GA';
+            position: absolute;
+            right: 28px;
+            bottom: -43px;
+            font-family: 'Cinzel', serif;
+            font-size: 10rem;
+            font-weight: 700;
+            line-height: 1;
+            color: rgba(91, 70, 50, 0.04);
+            pointer-events: none;
+        }
+
+        .collection-intro h1 {
+            position: relative;
+            z-index: 1;
+            font-size: clamp(1.75rem, 4vw, 2.45rem);
+        }
+
+        .collection-intro p {
+            position: relative;
+            z-index: 1;
+            color: var(--text-muted) !important;
+        }
+
+        .collection-intro .title-line {
+            width: 66px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--burnt-amber), var(--champagne-gold));
+            margin: 14px auto 0;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 576px) {
+            .collection-intro { padding: 28px 18px; }
+            .collection-intro::after { font-size: 7rem; right: 12px; }
+            .navbar-custom { padding: 12px 0; }
+            .navbar-brand { font-size: 1.1rem !important; }
+        }
     </style>
 </head>
 
-<body style="background: linear-gradient(135deg, #f4f0e6 0%, #ece5d8 50%, #f8f9fa 100%) !important; min-height: 100vh;">
+<body>
 
     <!-- CLEAN SINGLE NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-custom px-4">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             
             <!-- Brand Logo -->
-            <a class="navbar-brand fw-bold text-dark fs-4" href="{% url 'product_list' %}" style="font-family: 'Cinzel', serif;">
-                <i class="fa-solid fa-gem text-warning me-2"></i>GOLDENAURA 960
+            <a class="navbar-brand fw-bold fs-4" href="{% url 'product_list' %}">
+                <i class="fa-solid fa-gem me-2" style="color: var(--burnt-amber);"></i>GOLDENAURA 960
             </a>
 
             <div class="d-flex align-items-center gap-2">
                 <!-- Home Button -->
-                <a href="{% url 'home' %}" class="btn btn-light rounded-pill px-3 py-1 fw-medium shadow-sm border text-dark d-inline-flex align-items-center">
-                    <i class="fa-solid fa-house me-2 text-primary"></i>Home
+                <a href="{% url 'home' %}" class="btn btn-sm rounded-pill px-3 py-1 fw-medium shadow-sm border" style="background: var(--bg-ivory); border-color: var(--border-warm); color: var(--mocha-brown);">
+                    <i class="fa-solid fa-house me-1" style="color: var(--burnt-amber);"></i> Home
                 </a>
 
-                <!-- Wishlist Button -->
-                <a href="{% url 'wishlist_page' %}" class="btn btn-outline-danger rounded-pill px-3 py-1 fw-medium shadow-sm d-inline-flex align-items-center">
-                    <i class="fa-solid fa-heart me-2"></i>Wishlist
+                <!-- Wishlist Button with Dynamic Count ID -->
+                <a href="{% url 'wishlist_page' %}" class="btn btn-sm rounded-pill px-3 py-1 fw-medium shadow-sm border d-inline-flex align-items-center" style="background: #ffffff; border-color: rgba(225, 29, 72, 0.3); color: #be123c;">
+                    <i class="fa-solid fa-heart me-1"></i> Wishlist 
+                    <span id="wishlist-count-badge" class="ms-1 px-2 py-0.5 rounded-pill bg-danger text-white" style="font-size: 0.75rem;">
+                        {{ user_wishlist_ids|length }}
+                    </span>
                 </a>
 
                 <!-- Cart Button -->
-                <a href="{% url 'cart' %}" class="btn btn-dark rounded-pill px-3 py-1 fw-medium shadow-sm d-inline-flex align-items-center">
-                    <i class="fa-solid fa-cart-shopping me-2"></i>Cart
+                <a href="{% url 'cart' %}" class="btn btn-sm rounded-pill px-3 py-1 fw-medium shadow-sm text-white" style="background: var(--mocha-brown);">
+                    <i class="fa-solid fa-cart-shopping me-1" style="color: var(--champagne-gold);"></i> Cart
                 </a>
             </div>
         </div>
@@ -199,7 +310,7 @@
             <div class="row mb-4">
                 <div class="col-12">
                     {% for message in messages %}
-                        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+                        <div class="alert alert-success alert-dismissible fade show shadow-sm border-0" role="alert" style="background: rgba(40, 167, 69, 0.12); color: #15803d; border-radius: 12px;">
                             <i class="fa-solid fa-circle-check me-2"></i>{{ message }}
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
@@ -208,14 +319,47 @@
             </div>
         {% endif %}
 
-        <div class="text-center mb-5">
+        <!-- HEADER INTRO -->
+        <div class="collection-intro text-center mb-4">
+            <div class="collection-eyebrow mb-2">Fine jewellery edit</div>
             <h1 class="royal-heading fw-bold">Our Jewellery Collection</h1>
             <p class="text-muted">Discover handcrafted elegance designed for every occasion</p>
-            <div style="width: 60px; height: 3px; background: var(--gold-accent); margin: 10px auto 0;"></div>
+            <div class="title-line"></div>
+        </div>
+
+        <!-- MATERIAL FILTER BAR -->
+        <div class="filter-card mb-5">
+            <div class="d-flex flex-wrap gap-2 align-items-center justify-content-between">
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                    <span class="small fw-bold text-uppercase me-2" style="font-size: 0.78rem; letter-spacing: 0.8px; color: var(--mocha-brown);">
+                        <i class="fa-solid fa-sliders me-1" style="color: var(--burnt-amber);"></i> Material Filter:
+                    </span>
+
+                    <a href="?{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}material=all" 
+                       class="btn-filter-pill {% if not request.GET.material or request.GET.material == 'all' %}active{% endif %}">
+                        All Collection
+                    </a>
+                    
+                    <a href="?{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}material=gold" 
+                       class="btn-filter-pill {% if request.GET.material == 'gold' %}active{% endif %}">
+                        <i class="fa-solid fa-coins me-1" style="color: #eab308;"></i> Gold
+                    </a>
+
+                    <a href="?{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}material=silver" 
+                       class="btn-filter-pill {% if request.GET.material == 'silver' %}active{% endif %}">
+                        <i class="fa-solid fa-ring me-1" style="color: #94a3b8;"></i> Silver
+                    </a>
+
+                    <a href="?{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}material=diamond" 
+                       class="btn-filter-pill {% if request.GET.material == 'diamond' %}active{% endif %}">
+                        <i class="fa-solid fa-gem me-1" style="color: #38bdf8;"></i> Diamond
+                    </a>
+                </div>
+            </div>
         </div>
 
         <!-- PRODUCTS GRID -->
-        <div class="row">
+        <div class="row product-grid">
             {% for product in products %}
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
@@ -246,7 +390,7 @@
                         </div>
                         <div class="card-body">
                             <div class="badge-hallmark fw-semibold">
-                                <i class="fa-solid fa-award me-1"></i> BIS Hallmarked
+                                <i class="fa-solid fa-award me-1" style="color: var(--burnt-amber);"></i> BIS Hallmarked
                             </div>
                             <h5 class="card-title">{{ product.name }}</h5>
                             <p class="card-text">{{ product.description }}</p>
@@ -257,7 +401,11 @@
             </div>
             {% empty %}
             <div class="col-12 text-center py-5">
-                <p class="text-muted fs-5">No products available yet.</p>
+                <div class="fs-1 opacity-50 mb-3" style="color: var(--burnt-amber);">
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+                <h5 class="text-dark fw-bold mb-2">No Jewellery Found</h5>
+                <p class="text-muted small mb-0">Try changing your material filter selection.</p>
             </div>
             {% endfor %}
         </div>
@@ -291,6 +439,12 @@
                     btn.classList.remove('active');
                     icon.classList.remove('fa-solid');
                     icon.classList.add('fa-regular');
+                }
+
+                // 🌟 Live Update Wishlist Header Counter Badge
+                const countBadge = document.getElementById('wishlist-count-badge');
+                if (countBadge && data.wishlist_count !== undefined) {
+                    countBadge.innerText = data.wishlist_count;
                 }
             }
         })

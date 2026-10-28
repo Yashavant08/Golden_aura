@@ -1,153 +1,200 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Refund Details | GoldenAura 960</title>
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+    <!-- Bootstrap 5 & FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --mocha-brown: #5b4632;
+            --mocha-dark: #3b2c20;
+            --champagne-gold: #f4d9a0;
+            --burnt-amber: #cb873c;
+            --bg-ivory: #f7f1e8;
+            --card-bg: #ffffff;
+            --text-dark: #281816;
+            --text-muted: #6b5b4d;
+            --border-warm: #e6dec5;
+        }
 
         body {
-            background: #f7f5f0;
-            font-family: Arial, sans-serif;
+            background-color: var(--bg-ivory);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .royal-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        .gold-text {
+            background: linear-gradient(135deg, var(--burnt-amber) 0%, var(--mocha-brown) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .box {
             max-width: 600px;
-            margin: 60px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            width: 100%;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(91, 70, 50, 0.12), 0 0 25px rgba(203, 135, 60, 0.15);
+            border: 1px solid var(--border-warm);
+        }
+
+        .page-icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(244, 217, 160, 0.25);
+            color: var(--mocha-brown);
+            font-size: 26px;
+            border: 1px solid var(--border-warm);
         }
 
         .title {
-            color: #8c6d28;
-            font-weight: bold;
+            font-family: 'Cinzel', serif;
+            color: var(--mocha-brown);
+            font-weight: 800;
+        }
+
+        .amount-box {
+            background: var(--bg-ivory);
+            border: 1px solid var(--border-warm);
+            padding: 18px;
+            border-radius: 14px;
+            text-align: center;
+            margin-bottom: 25px;
         }
 
         .amount {
-            font-size: 24px;
-            color: #8c6d28;
-            font-weight: bold;
+            font-size: 28px;
+            color: var(--burnt-amber);
+            font-weight: 800;
+            font-family: 'Cinzel', serif;
+        }
+
+        .form-control {
+            background-color: var(--bg-ivory);
+            border: 1.5px solid var(--border-warm);
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: var(--text-dark);
+        }
+
+        .form-control:focus {
+            background-color: #ffffff;
+            border-color: var(--burnt-amber);
+            box-shadow: 0 0 0 4px rgba(203, 135, 60, 0.18);
         }
 
         .btn-gold {
-            background: #b89742;
-            color: white;
+            background: linear-gradient(135deg, var(--burnt-amber) 0%, var(--mocha-brown) 100%);
+            color: #ffffff;
+            font-weight: 600;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 13px;
+            border-radius: 10px;
             width: 100%;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 18px rgba(203, 135, 60, 0.28);
+            transition: all 0.3s ease;
         }
 
         .btn-gold:hover {
-            background: #8c6d28;
-            color: white;
+            background: linear-gradient(135deg, var(--mocha-brown) 0%, var(--mocha-dark) 100%);
+            color: var(--champagne-gold);
+            transform: translateY(-1px);
         }
 
+        .alert-info-custom {
+            background: rgba(244, 217, 160, 0.18);
+            border: 1px solid var(--border-warm);
+            color: var(--mocha-brown);
+            border-radius: 12px;
+            font-size: 0.88rem;
+        }
     </style>
-
 </head>
-
 
 <body>
 
 <div class="box">
+    <div class="page-icon">
+        <i class="fas fa-hand-holding-dollar"></i>
+    </div>
 
-    <h2 class="title text-center mb-3">
+    <h2 class="title text-center mb-2">
         Return Approved
     </h2>
-
-
-    <p class="text-center text-muted">
-
-        Your return request has been approved.
-
+    <p class="text-center text-muted small mb-4">
+        Your return request has been verified & approved by our concierge.
     </p>
 
+    <hr style="border-color: var(--border-warm);">
 
-    <hr>
-
-
-    <p>
-        <strong>Order:</strong>
-        #{{ return_request.order.id }}
-    </p>
-
-
-    <p>
-        <strong>Product:</strong>
-        {{ return_request.item.product.name }}
-    </p>
-
-
-    <p>
-        <strong>Refund Amount:</strong>
-    </p>
-
-
-    <div class="amount mb-4">
-
-        ₹{{ return_request.refund_amount }}
-
+    <div class="mb-3 d-flex justify-content-between small">
+        <span class="text-muted">Order Reference:</span>
+        <strong class="text-dark">#{{ return_request.order.id }}</strong>
     </div>
 
-
-    <div class="alert alert-info">
-
-        Refund will be processed through
-        <strong>UPI</strong>.
-
+    <div class="mb-3 d-flex justify-content-between small">
+        <span class="text-muted">Masterpiece Product:</span>
+        <strong class="text-dark">{{ return_request.item.product.name }}</strong>
     </div>
 
+    <div class="amount-box">
+        <span class="text-muted small d-block mb-1">Approved Refund Amount</span>
+        <div class="amount">
+            ₹{{ return_request.refund_amount }}
+        </div>
+    </div>
+
+    <div class="alert alert-info-custom p-3 mb-4">
+        <i class="fa-solid fa-circle-info me-1 text-warning"></i>
+        Refund will be securely transferred through <strong>UPI</strong> to your provided handle.
+    </div>
 
     <form method="POST">
-
         {% csrf_token %}
 
-
-        <label class="fw-bold mb-2">
-
-            UPI ID
-
+        <label class="fw-bold mb-2 small text-uppercase" style="color: var(--mocha-brown); letter-spacing: 0.5px;">
+            Enter Your UPI ID
         </label>
-
 
         <input
             type="text"
             name="upi_id"
-            class="form-control mb-3"
-            placeholder="example@upi"
+            class="form-control mb-4"
+            placeholder="e.g. username@okhdfcbank"
             required
         >
 
-
-        <button
-            type="submit"
-            class="btn-gold"
-        >
-
-            Submit Refund Details
-
+        <button type="submit" class="btn-gold">
+            <i class="fas fa-shield-halved me-2"></i> Submit Refund Details
         </button>
-
     </form>
-
 </div>
 
 </body>
-
 </html>
